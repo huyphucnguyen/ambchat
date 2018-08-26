@@ -1,7 +1,7 @@
 
 <?php
 //Test 
-echo "hello world";
+
     if(isset($_POST["username"])){
 
          $username=$_POST["username"];
@@ -15,7 +15,6 @@ echo "hello world";
             echo ('{"values":-1,"message":"User không tồn tại"}');
             exit();
          }
-
          $querry2="select * from user where (user_name='$username' AND pass_word='$password')";
          $result=pg_query($dbconnection,$querry2);
          if(pg_num_rows($result)==0){
@@ -23,6 +22,4 @@ echo "hello world";
          }
 
          echo ('{"values": 1,"message": "đăng nhập thành công" }');
-    }
-
 ?>
