@@ -1,6 +1,7 @@
 
 <?php
-
+//Test 
+echo "hello world";
     if(isset($_POST["username"])){
 
          $username=$_POST["username"];
