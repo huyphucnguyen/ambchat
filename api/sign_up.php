@@ -27,7 +27,7 @@ if(isset($_POST['userName'])){
     }
 
     $sql_dk = "insert into user(user_name,pass_word,full_name,picture,email,date_create) value ({'$username'},{'$password'},{'$fullName'},{'$image'},{'$email'}),{CURRENT_DATE}";
-    pg_query($dbconn,$sql_email);
+    pg_query($dbconn,$sql_dk);
 
     echo('{"value": 1, "message": "Đăng ký thành công!"}');
 }
