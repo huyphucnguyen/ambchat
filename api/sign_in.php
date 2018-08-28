@@ -7,6 +7,8 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     $username = $_POST["username"];
     $password = $_POST["password"];
+
+    echo "sign-in $username $password";
     //$querry1="select * from user where user_name='$username' ";
     $sql = "SELECT * FROM user WHERE user_name='$username'";
 
