@@ -3,12 +3,13 @@ header('Content-Type: application/json');
 
 //Test
 $res = null;
-if (isset($_POST["username"]) && isset($_POST["password"])) {
+if (!isset($_POST['username']) || !isset($_POST['password'])) {
+    $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 
+} else {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    echo "sign-in $username $password";
     //$querry1="select * from user where user_name='$username' ";
     $sql = "SELECT * FROM \"public\".\"user\" WHERE user_name='$username'";
 
@@ -36,7 +37,6 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                 break;
             }
             if ($dbpassword !== null) {
-                if (strcasecmp($dbpassword, $password) == 0) {
                     $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
                     unset($user->pass_word);
                     $res->data = $user;
@@ -61,7 +61,6 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     //  }
     //echo ('{"values": 1,"message": "đăng nhập thành công" }');
     //echo (json_encode($res));
-} else {
-    $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
+
 }
 echo (json_encode($res));
