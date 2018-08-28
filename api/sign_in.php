@@ -10,13 +10,13 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     echo "sign-in $username $password";
     //$querry1="select * from user where user_name='$username' ";
-    $sql = "SELECT * FROM user WHERE user_name='$username'";
+    $sql = "SELECT * FROM \"public\".\"user\" WHERE user_name='$username'";
 
     // ket noi database
     include "../lib/db.php";
     include "../lib/data.php";
     //$dbconnection=getDatabase();
-    $dbconnection = new postgresql("1");
+    $dbconnection = new postgresql("");
 
     //$result=pg_query($dbconnection,$querry1);
     $result = $dbconnection->select($sql);
