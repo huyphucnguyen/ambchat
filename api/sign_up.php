@@ -7,7 +7,7 @@ if(isset($_POST['userName'])){
     $password = $_POST['password'];
     $email = $_POST['email'];
     $image = $_POST['image'];
-    $sex = $_POST['sex'];
+    $gender = $_POST['gender'];
 
     include ('../lib/db.php');
     $dbconn = getDatabase();
@@ -26,7 +26,7 @@ if(isset($_POST['userName'])){
         exit();
     }
 
-    $sql_dk = "insert into public.user(user_name,pass_word,full_name,picture,email,date_create) value ({'$username'},{'$password'},{'$fullName'},{'$image'},{'$email'},CURRENT_DATE)";
+    $sql_dk = "insert into public.user(user_name,pass_word,full_name,picture,email,date_create) values ({'$username'},{'$password'},{'$fullName'},{'$image'},{'$email'},CURRENT_DATE)";
     pg_query($dbconn,$sql_dk);
 
     echo('{"value": 1, "message": "Đăng ký thành công!"}');
