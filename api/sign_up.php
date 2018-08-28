@@ -30,7 +30,9 @@ if(isset($_POST['userName'])){
     if(pg_query($dbconn,$sql_dk)){
         echo('{"value": "1"}');
     }
-
-    echo('{"value": "1"}');
+    else{
+       echo('{"value": "-3"}');
+        exit();
+    }
 }
 ?>
