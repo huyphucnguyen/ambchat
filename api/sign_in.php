@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json');
+include "../lib/data.php";
 
 //Test
 $res = null;
@@ -15,7 +16,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
 
     // ket noi database
     include "../lib/db.php";
-    include "../lib/data.php";
+    
     //$dbconnection=getDatabase();
     $dbconnection = new postgresql("");
 
