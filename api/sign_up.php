@@ -1,7 +1,10 @@
 <?php
 header('Content-Type: application/json');
+include "../lib/data.php";
 //Lấy data từ client
-if(isset($_POST['userName'])){
+$res = null;
+if(isset($_POST['userName'])&&isset($_POST['fullName'])&&isset($_POST['password']&&
+                        isset($_POST['email'])&&isset($_POST['image'])&&isset($_POST['gender'])){
     $username = $_POST['userName'];
     $fullName = $_POST['fullName'];
     $password = $_POST['password'];
