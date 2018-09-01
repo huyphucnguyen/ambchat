@@ -5,37 +5,45 @@ include "../lib/data.php";
 $res = null;
 if(isset($_POST['userName'])&&isset($_POST['fullName'])&&isset($_POST['password']&&
                         isset($_POST['email'])&&isset($_POST['image'])&&isset($_POST['gender'])){
-    $username = $_POST['userName'];
-    $fullName = $_POST['fullName'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    $image = $_POST['image'];
-    $gender = $_POST['gender'];
+  $username = $_POST['userName'];
+  $fullName = $_POST['fullName'];
+  $password = $_POST['password'];
+  $email = $_POST['email'];
+  $image = $_POST['image'];
+  $gender = $_POST['gender'];
 
-    include ('../lib/db.php');
-    $dbconn = getDatabase();
-    //Kiểm tra tài khoản này có tồn tại chưa
-    $sql_user = "select * from user where user_name = {'$username'}";
-    $result = pg_query($dbconn,$sql_dk);
-    if(pg_num_rows($sql_dk)>0){
-        echo('{"value": "-1"}'); //Tài khoản đã tồn tại
-        exit();
-    }
+  //Kết nối database
+  include ('../lib/db.php');
+  //Kiểm tra tài khoản này có tồn tại chưa
+  $sql_user = "select * from \"public\".\"user\" where user_name = {'$username'}";
 
-    $sql_email = "select * from user where email = {'$email'}";
-    $rs_email = pg_query($dbconn,$sql_email);
-    if(pg_num_rows($rs_email)>0){
-        echo('{"value": "-2"}'); //Email đã được đăng ký bởi tài khoản khác
-        exit();
-    }
-
-    $sql_dk = "insert into public.user(user_name,pass_word,full_name,picture,email,date_create) values ({'$username'},{'$password'},{'$fullName'},{'$image'},{'$email'},CURRENT_DATE)";
-    if(pg_query($dbconn,$sql_dk)){
-        echo('{"value": "1"}');
+  $dbconnection = new postgresql("");
+  $result = $dbconnection->select($sql_user);
+  
+  if($result!=null){
+    if(pg_num_rows($sql_dk)==0){
+      /*Kiểm tra email có người đăng ký chưa. Email của user là duy nhất*/
+      $sql_email = "select * from user where email = {'$email'}";
+      $rs_email = $dbconnection->select($sql_email);
+      if(pg_num_rows($rs_email)==0){
+        $sql_dk = "insert into \"public\".\"user(user_name,pass_word,full_name,picture,email,date_create) 
+        values ({'$username'},{'$password'},{'$fullName'},{'$image'},{'$email'},CURRENT_DATE)";
+      }
+      else{
+        $res = new Result(Constant::EMAIL_EXIST, 'Email is already registered by another account');
+      }
     }
     else{
-       echo('{"value": "-3"}');
-        exit();
+       $res = new Result(Constant::USER_EXIST , 'User is exist');
     }
+    $dbconnection->closeResult($result);
+  }
+  else{
+    $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+  }
+  $dbconnection->close();
+ } else {
+    $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 }
+echo (json_encode($res));
 ?>
