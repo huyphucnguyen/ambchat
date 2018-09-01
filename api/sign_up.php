@@ -5,8 +5,8 @@ include "../lib/data.php";
 $res = null;
 if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'])&&
                         isset($_POST['email'])&&isset($_POST['image'])&&isset($_POST['gender'])){
-  $username = $_POST['userName'];
-  $fullName = $_POST['fullName'];
+  $username = $_POST['username'];
+  $fullName = $_POST['fullname'];
   $password = $_POST['password'];
   $email = $_POST['email'];
   $image = $_POST['image'];
@@ -26,8 +26,8 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
       $sql_email = "select * from \"public\".\"user\" where email = '$email'";
       $rs_email = $dbconnection->select($sql_email);
       if(pg_num_rows($rs_email)==0){
-        $sql_dk = "insert into \"public\".\"user(user_name,pass_word,full_name,picture,email,date_create) 
-        values ({'$username'},{'$password'},{'$fullName'},{'$image'},{'$email'},CURRENT_DATE)";
+        $sql_dk = "insert into \"public\".\"user(user_name,pass_word,full_name,picture,gender,email,date_create) 
+        values ({'$username'},{'$password'},{'$fullName'},{'$image'},{'$gender'},{'$email'},CURRENT_DATE)";
         $dbconnection->execute($sql_dk);
         $dbconnection->closeResult($rs_email);
       }
