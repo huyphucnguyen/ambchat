@@ -28,6 +28,8 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
       if(pg_num_rows($rs_email)==0){
         $sql_dk = "insert into \"public\".\"user(user_name,pass_word,full_name,picture,email,date_create) 
         values ({'$username'},{'$password'},{'$fullName'},{'$image'},{'$email'},CURRENT_DATE)";
+        $dbconnection->execute($sql_dk);
+        $dbconnection->closeResult($rs_email);
       }
       else{
         $res = new Result(Constant::EMAIL_EXIST, 'Email is already registered by another account');
