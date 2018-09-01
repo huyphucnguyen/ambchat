@@ -15,7 +15,7 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
   //Kết nối database
   include ('../lib/db.php');
   //Kiểm tra tài khoản này có tồn tại chưa
-  $sql_user = "select * from \"public\".\"user\" where user_name = {'$username'}";
+  $sql_user = "select * from \"public\".\"user\" where user_name = '$username'";
 
   $dbconnection = new postgresql("");
   $result = $dbconnection->select($sql_user);
@@ -23,7 +23,7 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
   if($result!=null){
     if(pg_num_rows($sql_dk)==0){
       /*Kiểm tra email có người đăng ký chưa. Email của user là duy nhất*/
-      $sql_email = "select * from user where email = {'$email'}";
+      $sql_email = "select * from user where email = '$email'";
       $rs_email = $dbconnection->select($sql_email);
       if(pg_num_rows($rs_email)==0){
         $sql_dk = "insert into \"public\".\"user(user_name,pass_word,full_name,picture,email,date_create) 
