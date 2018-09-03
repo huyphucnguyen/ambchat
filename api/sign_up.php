@@ -30,6 +30,7 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
         values ('$username','$password','$fullName','$image','$email',CURRENT_DATE,'$gender')";
         $dbconnection->execute($sql_dk);
         $dbconnection->closeResult($rs_email);
+        $res = new Result(Constant::SUCCESS,'Registered successfully');
       }
       else{
         $res = new Result(Constant::EMAIL_EXIST, 'Email is already registered by another account');
