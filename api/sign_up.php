@@ -45,7 +45,8 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
   }
   $dbconnection->close();
  } else {
-    $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
+    //$res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
+  $res = new Result(Constant::INVALID_PARAMETERS, $_POST['username']);
 }
 echo (json_encode($res));
 ?>
