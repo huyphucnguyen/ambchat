@@ -4,7 +4,7 @@ include "../lib/data.php";
 //Lấy data từ client
 $res = null;
 if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'])&&
-                        isset($_POST['email'])&&isset($_POST['image'])&&isset($_POST['gender'])){
+                        isset($_POST['email'])&&isset($_POST['gender'])){
   $username = $_POST['username'];
   $fullName = $_POST['fullname'];
   $password = $_POST['password'];
