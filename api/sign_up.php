@@ -9,7 +9,6 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
   $fullName = $_POST['fullname'];
   $password = $_POST['password'];
   $email = $_POST['email'];
-  $image = $_POST['image'];
   $gender = $_POST['gender'];
 
   //Kết nối database
@@ -26,8 +25,8 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
       $sql_email = "select * from \"public\".\"user\" where email = '$email'";
       $rs_email = $dbconnection->select($sql_email);
       if(pg_num_rows($rs_email)==0){
-        $sql_dk = "INSERT INTO public.user(user_name,pass_word,full_name,picture,email,date_create,gender)
-        values ('$username','$password','$fullName','$image','$email',CURRENT_DATE,'$gender')";
+        $sql_dk = "INSERT INTO public.user(user_name,pass_word,full_name,email,date_create,gender)
+        values ('$username','$password','$fullName','$email',CURRENT_DATE,'$gender')";
         $dbconnection->execute($sql_dk);
         $dbconnection->closeResult($rs_email);
         $res = new Result(Constant::SUCCESS,'Registered successfully');
