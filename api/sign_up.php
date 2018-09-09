@@ -8,6 +8,7 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
   $username = $_POST['username'];
   $fullName = $_POST['fullname'];
   $password = $_POST['password'];
+  $encodePassword = hash("SHA256",$password);
   $email = $_POST['email'];
   $gender = $_POST['gender'];
 
@@ -26,7 +27,7 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
       $rs_email = $dbconnection->select($sql_email);
       if(pg_num_rows($rs_email)==0){
         $sql_dk = "INSERT INTO public.user(user_name,pass_word,full_name,email,date_create,gender)
-        values ('$username','$password','$fullName','$email',CURRENT_DATE,'$gender')";
+        values ('$username','$encodePassword','$fullName','$email',CURRENT_DATE,'$gender')";
         $dbconnection->execute($sql_dk);
         $dbconnection->closeResult($rs_email);
         $res = new Result(Constant::SUCCESS,'Registered successfully');
@@ -45,8 +46,7 @@ if(isset($_POST['username'])&&isset($_POST['fullname'])&&isset($_POST['password'
   }
   $dbconnection->close();
  } else {
-    //$res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
-  $res = new Result(Constant::INVALID_PARAMETERS, $_POST['username']);
+    $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 }
 echo (json_encode($res));
 ?>
