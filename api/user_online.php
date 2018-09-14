@@ -43,6 +43,6 @@ if($result!=null){
 }
 else
     $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
-
+echo $res;
 
 ?>
