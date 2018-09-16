@@ -35,7 +35,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
             }
             if ($dbpassword !== null) {
                 if (strcasecmp($dbpassword, $password) == 0) {
-                    $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+                    include "../lib/function.php";
+                    $guid = GUID();
+                    $res = new Result(Constant::SUCCESS, 'Operation complete successfully.',$guid);
                     unset($user->pass_word);
                     $res->data = $user;
                 } else {
