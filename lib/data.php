@@ -4,10 +4,17 @@ class Result
     public $error;
     public $message;
     public $data;
+    public $sesson_key;
     public function __construct($error, $message)
     {
         $this->error = $error;
         $this->message = $message;
+    }
+    
+    public function __construct1($error, $message, $sesson_key){
+        $this->error = $error;
+        $this->message = $message;
+        $this->sesson_key = $sesson_key;
     }
 }
 class Constant
