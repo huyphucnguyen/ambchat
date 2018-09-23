@@ -35,7 +35,15 @@ if(isset($_GET['session'])&&isset($_GET['user_id'])&&isset($_GET['device_id'])){
             $sql_insertSS = "insert into public.user_online values('$session','$time','$user_id','$device_id') ";
             $dbconnection->execute($sql_insertSS);
         }
+        
+        //Trả về số user online
+        $sql_numOn = "select session from public.user_online";
+        $res_numOn = $dbconnection->select($$sql_numOn);
+        $num_online = pg_num_rows($res_numOn);
+        $res = new Result(Constant::SUCCESS, $num_online);
+  
         $dbconnection->closeResult($result);
+        $dbconnection->closeResult($$res_numOn);
     }else{
         $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
     }
