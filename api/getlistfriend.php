@@ -1,3 +1,3 @@
 <?php 
-cho 'aaa'
+echo 'aaa';
 ?>
