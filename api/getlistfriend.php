@@ -17,7 +17,7 @@ include "../lib/data.php";
       $mangUser=array();
    //Them phan tu vao amng
      while ($row=pg_fetch_assoc($data)) {
- 	   array_push($mangUser, new User( $row['user_id'],$row['user_name'],$row['fullname']));
+ 	   array_push($mangUser, new User( $row['user_id'],$row['user_name'],$row['full_name']));
  	# code...
  }     
     // Chuyen dinh dang cua mang thanh JSON
