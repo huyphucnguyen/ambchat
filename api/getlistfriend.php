@@ -5,10 +5,10 @@ $sql = "SELECT * FROM \"public\".\"user\" ";
 //$data = $dbconnection->select($sql);
 $data=pg_query($dbconn,$sql);
 class User{
-      function User($user_name){
-           // $this->User_ID=$id;
+      function User($user_id,$user_name,$full_name){
+            $this->User_ID=$user_id;
             $this->User_Name=$user_name;
-           // $this->FullName=$fullname;
+            $this->Full_Name=$full_name;
       }
  }
    // tao mangA
@@ -16,10 +16,10 @@ class User{
    //Them phan tu vao amng
      while ($row=pg_fetch_array($data)) 
      {
-        array_push($arrUser, new User($row['user_name']));
+        array_push($arrUser, new User($row['user_id'],$row['user_name'],$row['full_name']));
         //echo $row['user_name'];  
      }      
     // Chuyen dinh dang cua mang thanh JSON
-     //echo json_encode(arrUser);
+     echo json_encode($arrUser);
      echo count($arrUser);
 ?>
