@@ -4,22 +4,22 @@ include "../lib/data.php";
 $dbconnection = new postgresql("");
 $sql = "SELECT * FROM \"public\".\"user\" ";
 $data = $dbconnection->select($sql);
-class User{
-      function User($user_id,$user_name,$fullname){
-            $this->User_ID=$id;
+class user{
+      function User($user_name){
+           // $this->User_ID=$id;
             $this->User_Name=$user_name;
-            $this->FullName=$fullname;
+           // $this->FullName=$fullname;
       }
  }
    // tao mang
-     $mangUser=array();
+     $arrUser=array();
    //Them phan tu vao amng
      while ($row=pg_fetch_array($data)) 
      {
-        array_push($mangUser, new User( $row['user_id'],$row['user_name'],$row['full_name']));
+        array_push($arrUser, new User($row['user_name']);
        // echo $row['user_name'];  
      }      
     // Chuyen dinh dang cua mang thanh JSON
      //echo json_encode(mangUser);
-     echo count($mangUser);
+     echo count($arrUser);
 ?>
