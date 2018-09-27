@@ -4,7 +4,7 @@ include "../lib/data.php";
 $dbconnection = new postgresql("");
 $sql = "SELECT * FROM \"public\".\"user\" ";
 $data = $dbconnection->select($sql);
-class user{
+class User{
       function User($user_name){
            // $this->User_ID=$id;
             $this->User_Name=$user_name;
