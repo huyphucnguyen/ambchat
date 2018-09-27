@@ -17,9 +17,10 @@ class User{
      while ($row=pg_fetch_array($data)) 
      {
         array_push($arrUser, new User("aaaaa");
+        echo count($arrUser);
        // echo $row['user_name'];  
      }      
     // Chuyen dinh dang cua mang thanh JSON
      //echo json_encode(mangUser);
-     echo count($arrUser);
+     //echo count($arrUser);
 ?>
