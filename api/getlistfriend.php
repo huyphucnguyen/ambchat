@@ -20,6 +20,6 @@ class User{
         //echo $row['user_name'];  
      }      
     // Chuyen dinh dang cua mang thanh JSON
-     echo json_encode(mangUser);
+     echo json_encode(arrUser);
      //echo count($arrUser);
 ?>
