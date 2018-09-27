@@ -16,7 +16,7 @@ class user{
    //Them phan tu vao amng
      while ($row=pg_fetch_array($data)) 
      {
-        array_push($arrUser, new User($row['user_name']);
+        array_push($arrUser, new User("aaaaa");
        // echo $row['user_name'];  
      }      
     // Chuyen dinh dang cua mang thanh JSON
