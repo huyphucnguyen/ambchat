@@ -21,6 +21,6 @@ include "../lib/data.php";
   # code...
  }     
     // Chuyen dinh dang cua mang thanh JSON
-      echo json_encode($mangUser);  
+     echo " ".count(mangUser);
 ?>
 ?>
