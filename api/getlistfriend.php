@@ -21,5 +21,4 @@ class User{
      }      
     // Chuyen dinh dang cua mang thanh JSON
      echo json_encode($arrUser);
-     echo count($arrUser);
 ?>
