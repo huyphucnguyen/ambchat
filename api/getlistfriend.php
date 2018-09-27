@@ -17,8 +17,9 @@ class User{
      while ($row=pg_fetch_array($data)) 
      {
         array_push($mangUser, new User( $row['user_id'],$row['user_name'],$row['full_name']));
-        echo $row['user_name'];  
+       // echo $row['user_name'];  
      }      
     // Chuyen dinh dang cua mang thanh JSON
-     echo json_encode(mangUser);
+     //echo json_encode(mangUser);
+     echo count($mangUser);
 ?>
