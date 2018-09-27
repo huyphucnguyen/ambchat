@@ -11,5 +11,5 @@ $data = $dbconnection->select($sql);
       
     // Chuyen dinh dang cua mang thanh JSON
      //echo json_encode(mangUser);
-     echo "so phan tu cua mang la". count($arrUser);
+     echo "so phan tu cua mang la";
 ?>
