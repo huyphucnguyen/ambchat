@@ -1,5 +1,5 @@
 <?php 
-include "/lib/function.php";
+include "../lib/function.php";
 $result = null;
 $res = null;
 
