@@ -12,7 +12,7 @@ class Firebase{
 /**function makes curl request to firebase servers
 *@param $fields is data with message and destination*/
   private function sendPushNotification($fields){
-    define('FIREBASE_API_KEY','');
+    define('FIREBASE_API_KEY','AAAAcEvRAgI:APA91bEYss_1nNoJjUWaOILYPuKUeyrcfCjXOf2gT4Z_Bi_k71CzMSNZNOwcNnabxLfqn71dN4lcBL4gFgIwYOvvXuWCFUFV5tBxnyWYj1XCEJoDOYqWhOHyvq3xdSR4CwglxM1mAORR');
     
     $url = 'https://fcm.googleapis.com/fcm/send';
     $headers = array(
