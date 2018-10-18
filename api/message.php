@@ -29,4 +29,4 @@ if(isset($_GET['device_id']) && isset($_GET['message'])){
 else{
     $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 }
-echo $res;
+echo (json_encode($res));
