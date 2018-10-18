@@ -1,12 +1,14 @@
 <?php 
-include "../lib/PushMessage.php";
-include "../lib/firebase.php";
+
 $result = null;
 $res = null;
 
 if(isset($_POST['device_id']) && isset($_POST['message'])){
     $device_id = $_POST['device_id'];
     $message = $_POST['message'];
+    
+    include "../lib/PushMessage.php";
+    include "../lib/firebase.php";
     
     $firebase = new Firebase();
     $push = new PushMessage();
