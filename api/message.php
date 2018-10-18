@@ -3,9 +3,9 @@
 $result = null;
 $res = null;
 
-if(isset($_POST['device_id']) && isset($_POST['message'])){
-    $device_id = $_POST['device_id'];
-    $message = $_POST['message'];
+if(isset($_GET['device_id']) && isset($_GET['message'])){
+    $device_id = $_GET['device_id'];
+    $message = $_GET['message'];
     
     include "../lib/PushMessage.php";
     include "../lib/firebase.php";
