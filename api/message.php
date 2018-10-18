@@ -1,18 +1,29 @@
 <?php 
-include "../lib/function.php";
+include "../lib/PushMessage.php";
+include "../lib/firebase.php";
 $result = null;
 $res = null;
 
-if(isset($_POST['session']) && isset($_POST['message'])){
-    $session = $_POST['session'];
+if(isset($_POST['device_id']) && isset($_POST['message'])){
+    $device_id = $_POST['device_id'];
     $message = $_POST['message'];
-
-    $resutl = sendMessageToFCM($session,$message);
-    if($result!=null){
-        $res = new Result(Constant::SUCCESS,$message);
+    
+    $firebase = new Firebase();
+    $push = new PushMessage();
+    
+    $push->setMessage($message);
+    $json = '';
+    $response = '';
+    
+    $json = $push -> getPush();
+    $response = $firebase->send($device_id,$message);
+    
+    
+    if($response==TRUE){
+        $res = new Result(Constant::SUCCESS,$json);
     }
     else{
-        $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+        $res = new Result(Constant::GENERAL_ERROR, 'Can not send the message. Please try again later.');
     }
 }
 else{
