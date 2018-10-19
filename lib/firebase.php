@@ -7,7 +7,6 @@ class Firebase{
     );
     return $this->sendPushNotification($fields);
   }
-}
 
 /**function makes curl request to firebase servers
 *@param $fields is data with message and destination*/
