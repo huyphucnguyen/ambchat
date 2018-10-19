@@ -27,7 +27,7 @@ class PushMessage{
     $res['data']['title'] = $this->title;
     $res['data']['message'] = $this->message;
     $res['data']['category']=$this->data;
-    $res['data'][timestamp'] = date('d-m-Y G:i:s');
+    $res['data']['timestamp'] = date('d-m-Y G:i:s');
     return $res;
   }
   
