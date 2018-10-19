@@ -9,7 +9,7 @@ if(isset($_GET['device_id']) && isset($_GET['message'])){
     
     $res = new Result(Constant::GENERAL_ERROR, 'Can not send the message. Please try again later.');
     
-//     include "../lib/PushMessage.php";
+    include "../lib/PushMessage.php";
 //     include "../lib/firebase.php";
     
 //     $firebase = new Firebase();
