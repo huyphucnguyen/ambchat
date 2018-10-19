@@ -1,6 +1,7 @@
 <?php 
 header('Content-Type: application/json');
 $res = null;
+$res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 if(isset($_GET['device_id']) && isset($_GET['message'])){
     $device_id = $_GET['device_id'];
     $message = $_GET['message'];
