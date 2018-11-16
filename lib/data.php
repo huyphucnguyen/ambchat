@@ -29,4 +29,6 @@ class Constant
 
     const USER_EXIST = 3;
     const EMAIL_EXIST = 4;
+    
+    const INVALID_DATABASE = -3;
 }
