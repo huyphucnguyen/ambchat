@@ -35,4 +35,6 @@ if(isset($_POST["username"])){
 }   else {
     $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 }
+echo "helo";
+echo (json_encode($res));
 ?>
