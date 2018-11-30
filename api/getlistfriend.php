@@ -6,10 +6,10 @@
 	$res = null;
 	$sql = "SELECT * FROM \"public\".\"user\" ";
     $dbconnection = new postgresql("");
-	echo "aaaa2";
+	
 	if($dbconnection->isValid())
 	  {
-		  	echo "bbbb";
+		  
 		   $result = $dbconnection->select($sql);
 		   ////
 		   class User{
@@ -20,7 +20,7 @@
                         }
                      }
 		  if($result!==null){
-			    echo "cccc2";
+			   
 			     // create array user
                 $arrUser=array();
 				$data=null;
