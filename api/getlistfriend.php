@@ -6,6 +6,7 @@
 	$res = null;
 	$sql = "SELECT * FROM \"public\".\"user\" ";
     $dbconnection = new postgresql("");
+    echo "aaaa";
 	if($dbconnection->isValid())
 	  {
 		   $result = $dbconnection->select($sql);
