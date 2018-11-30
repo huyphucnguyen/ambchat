@@ -6,7 +6,7 @@
 	$res = null;
 	$sql = "SELECT * FROM \"public\".\"user\" ";
     $dbconnection = new postgresql("");
-	echo "aaaa";
+	echo "aaaa1";
 	if($dbconnection->isValid())
 	  {
 		  	echo "bbbb";
@@ -20,6 +20,7 @@
                         }
                      }
 		  if($result!==null){
+			  echo "cccc";
 			     // create array user
                 $arrUser=array();
 				$data=null;
