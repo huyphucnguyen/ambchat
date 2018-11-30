@@ -6,7 +6,7 @@
 	$res = null;
 	$sql = "SELECT * FROM \"public\".\"user\" ";
     $dbconnection = new postgresql("");
-	echo "aaaa1";
+	echo "aaaa2";
 	if($dbconnection->isValid())
 	  {
 		  	echo "bbbb";
@@ -27,6 +27,7 @@
                  //add element to arrUser
                 while ($row=pg_fetch_array($result)) 
                 {
+					echo  $row['user_id'];
                       array_push($arrUser, 
 					             new User(
 								 $row['user_id'],
