@@ -6,9 +6,10 @@
 	$res = null;
 	$sql = "SELECT * FROM \"public\".\"user\" ";
     $dbconnection = new postgresql("");
-    echo "aaaa";
+	echo "aaaa";
 	if($dbconnection->isValid())
 	  {
+		  	echo "bbbb";
 		   $result = $dbconnection->select($sql);
 		   ////
 		   class User{
