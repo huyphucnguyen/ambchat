@@ -20,7 +20,7 @@
                         }
                      }
 		  if($result!==null){
-			  echo "cccc";
+			    echo "cccc2";
 			     // create array user
                 $arrUser=array();
 				$data=null;
@@ -34,8 +34,8 @@
 								 $row['user_name'],
 								 $row['full_name']));
                 }
-			  $guid = GUID();
-			  $res = new Result(Constant::SUCCESS, 'Operation complete successfully.',$guid);     
+			  
+			  $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');     
               $res->data = $arrUser;	
 		  }
 		  else{
