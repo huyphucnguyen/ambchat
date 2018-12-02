@@ -38,8 +38,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                 if (strcasecmp($dbpassword, $password) == 0) {
                     include "../lib/function.php";
                     $guid = GUID();
-                    $res = new Result(Constant::SUCCESS, 'Operation complete successfully.',$guid);
+                    $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
                     unset($user->pass_word);
+                    $res->sesson_key = $guid();
                     $res->data = $user;
                 } else {
                     $res = new Result(Constant::INVALID_PASSWORD, 'Password is not matching.');
