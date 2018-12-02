@@ -59,5 +59,5 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 } else {
     $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 }
-//echo (json_encode($res));
-echo createJsonWebToken($res);
+echo (json_encode($res));
+//echo createJsonWebToken($res);
