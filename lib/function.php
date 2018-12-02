@@ -9,16 +9,16 @@ function GUID()
     return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 }
 
-// function createJsonWebToken($data){
-//     $header = json_encode(['type' => 'JWT','alg' => 'SH256']);   
-//     $payload = json_encode($data);
-//     $base64UrlHeader = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($header));
-//     $base64UrlPayload =  str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($payload));
-//     $signature = hash_hmac('sha256',$base64UrlHeader . "." . $base64UrlPayload, 'Ambchat', true);
-//     $base64UrlSignature = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($signature));
-//     $jwt = $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
-//     return $jwt;
-// }
+function createJsonWebToken($data){
+    $header = json_encode(['type' => 'JWT','alg' => 'SH256']);   
+    $payload = json_encode($data);
+    $base64UrlHeader = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($header));
+    $base64UrlPayload =  str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($payload));
+    $signature = hash_hmac('sha256',$base64UrlHeader . "." . $base64UrlPayload, 'Ambchat', true);
+    $base64UrlSignature = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($signature));
+    $jwt = $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
+    return $jwt;
+}
 
 function sendMessageToFCM($session = "" , $message = ""){
     $url = "https://fcm.googleapis.com/fcm/send";
