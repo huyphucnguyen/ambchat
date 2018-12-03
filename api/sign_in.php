@@ -44,8 +44,9 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                     $sql_getRe = "SELECT * FROM public.user_history WHERE user_id = '$user_id' and device_id = '$device_id'";
                     $result_getRe = $dbconnection->select($sql);
                     if($result_getRe!=null){
-                        echo pg_num_rows($result_getRe);
+                        
                         if (pg_num_rows($result_getRe) > 0){
+                            echo 'Kich thuoc la: '.pg_num_rows($result_getRe);
                             //Có tồn tại
                             $data1 = pg_fetch_object($result_getRe);
                             $guid_old = $data1->guid;
@@ -59,6 +60,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                             $dbconnection->execute($sql_update_history);
                             
                         } else{
+                            echo 'Khong ton tai';
                             //Không tồn tại thì insert vô | timeout = 1 tuần: 604800
                             $sql_insert_hi = "INSERT INTO public.user_history VALUES('$user_id','$device_id','$guid')";
                             $dbconnection->execute($sql_insert_hi);
