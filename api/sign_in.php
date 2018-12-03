@@ -59,7 +59,6 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                             $dbconnection->execute($sql_update_history);
                             
                         } else{
-                            echo 'Khong ton tai';
                             //Không tồn tại thì insert vô | timeout = 1 tuần: 604800
                             $sql_insert_hi = "INSERT INTO public.user_history VALUES('$user_id','$device_id','$guid')";
                             $dbconnection->execute($sql_insert_hi);
