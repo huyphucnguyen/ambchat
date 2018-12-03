@@ -62,7 +62,8 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                             $dbconnection->execute($sql_insert_hi);
                         }
                         date_default_timezone_set("Asia/Ho_Chi_Minh"); 
-                        $sql_insert_on = "INSERT INTO public.user_online VALUES('$guid',time(),604800)";
+                        $time = time();
+                        $sql_insert_on = "INSERT INTO public.user_online VALUES('$guid','$time',604800)";
                         $dbconnection->execute($sql_insert_on);
                         
                         $dbconnection->closeResult($result_getRe);
