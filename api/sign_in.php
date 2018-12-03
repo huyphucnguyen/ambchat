@@ -47,7 +47,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                         if (pg_num_rows($result_getRe) > 0){
                             //Có tồn tại
                             $data1 = pg_fetch_object($result_getRe);
-                            $guid_old = $data->$guid;
+                            $guid_old = $data1->guid;
                             
                             //Tiến hành xóa những record đã tồn tại trong bảng user_online
                             $sql_remove_online = "DELETE FROM public.user_online WHERE guid = '$guid_old'";
