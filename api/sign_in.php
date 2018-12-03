@@ -40,7 +40,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                     
                     //Tiến hành ghi bảng user_history và xóa bỏ các records có guid của bảng user_online
                     //trùng với guid trong bảng user_history có user_id và device_id trùng khớp
-                    $sql_getRe = "select * from public.user_history where user_id = '$user->user_id' and device_id = '$device_id'";
+                    $sql_getRe = "SELECT * FROM public.user_history WHERE user_id = '$user->user_id' and device_id = '$device_id'";
                     $result_getRe = $dbconnection->select($sql);
                     if($result_getRe!=null){
                         if (pg_num_rows($result_getRe) > 0){
@@ -49,25 +49,27 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                             $guid_old = $data->$guid;
                             
                             //Tiến hành xóa những record đã tồn tại trong bảng user_online
-                            $sql_remove_online = "delete from public.user_online where guid = '$guid_old'";
+                            $sql_remove_online = "DELETE FROM public.user_online WHERE guid = '$guid_old'";
                             //Cập nhật guid trong bảng $user_history
-                            $sql_update_history = "update public.user_history set guid = '$guid' where user_id = '$user->user_id' and device_id = '$device_id'";
+                            $sql_update_history = "UPDATE public.user_history SET guid = '$guid' WHERE user_id = '$user->user_id' and device_id = '$device_id'";
                             
                             $dbconnection->execute($sql_remove_online);
                             $dbconnection->execute($sql_update_history);
                             
-                            $dbconnection->closeResult($result_getRe);
                         } else{
                             //Không tồn tại thì insert vô | timeout = 1 tuần: 604800
-                            $sql_insert_hi = "insert into public.user_history values('$user->user_id','$device_id','$guid')";
+                            $sql_insert_hi = "INSERT INTO public.user_history VALUES('$user->user_id','$device_id','$guid')";
                             $dbconnection->execute($sql_insert_hi);
                         }
-                        $sql_insert_on = "insert into public.user_online values('$guid',time(),604800)";
+                        date_default_timezone_set("Asia/Ho_Chi_Minh"); 
+                        $sql_insert_on = "INSERT INTO public.user_online VALUES('$guid',time(),604800)";
                         $dbconnection->execute($sql_insert_on);
+                        
+                        $dbconnection->closeResult($result_getRe);
                     } else{
                         //Trả về thông báo lỗi => Đã đăng nhập thành công thì có thông báo thành công => có cần thông báo không?
                     }
-                    $sql_writeHistory = "";
+                    
                 } else {
                     $res = new Result(Constant::INVALID_PASSWORD, 'Password is not matching.');
                 }
