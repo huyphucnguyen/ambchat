@@ -44,6 +44,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                     $sql_getRe = "SELECT * FROM public.user_history WHERE user_id = '$user_id' and device_id = '$device_id'";
                     $result_getRe = $dbconnection->select($sql);
                     if($result_getRe!=null){
+                        echo pg_num_rows($result_getRe);
                         if (pg_num_rows($result_getRe) > 0){
                             //Có tồn tại
                             $data1 = pg_fetch_object($result_getRe);
