@@ -43,13 +43,14 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                     //trùng với guid trong bảng user_history có user_id và device_id trùng khớp
                     $sql_getRe = "SELECT * FROM public.user_history WHERE user_id = '$user_id' and device_id = '$device_id'";
                     $result_getRe = $dbconnection->select($sql);
-                    if($result_getRe!=null){
+                    if($result_getRe !== null){
                         
                         if (pg_num_rows($result_getRe) > 0){
                             echo 'Kich thuoc la: '.pg_num_rows($result_getRe);
                             //Có tồn tại
                             $data1 = pg_fetch_object($result_getRe);
                             $guid_old = $data1->guid;
+                            echo $guid_old;
                             
                             //Tiến hành xóa những record đã tồn tại trong bảng user_online
                             $sql_remove_online = "DELETE FROM public.user_online WHERE guid = '$guid_old'";
