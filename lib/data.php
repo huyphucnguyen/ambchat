@@ -43,4 +43,5 @@ class Constant
     const EMAIL_EXIST = 4;
     
     const INVALID_DATABASE = -3;
+    const INVALID_TOKEN = -4;
 }
