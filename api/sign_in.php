@@ -73,6 +73,14 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                         //Trả về thông báo lỗi => Đã đăng nhập thành công thì có thông báo thành công => có cần thông báo không?
                     }
                     
+                    //Tạo token & save token vào db
+                    $token = createJsonWebToken($res);
+                    //Xóa token cũ (nếu có)
+                    $sql_delete_token = "DELETE FROM public.token WHERE user_id = '$user_id' and device_id = '$device_id'";
+                    $sql_insert_token = "INSERT INTO public.token VALUES('$user_id','$device_id','$token')";
+                    $dbconnection->execute($sql_delete_token);
+                    $dbconnection->execute($sql_insert_token);
+                    
                 } else {
                     $res = new Result(Constant::INVALID_PASSWORD, 'Password is not matching.');
                 }
