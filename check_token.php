@@ -38,6 +38,8 @@ if (isset($_POST["TOKEN"])) {
                 unset($user->pass_word);
                 $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
                 $res->data = $user;
+                $guid = GUID();
+                $res->sesson_key = $guid;
                 
                 
                 //Set online status that was login successfully
