@@ -40,14 +40,13 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                     $user_id = $user->user_id;
                     //Set online status that was login successfully
                     setOnline($dbconnection,$user_id,$device_id);
-                    
-                    //Tạo token & save token vào db
-                    $token = createJsonWebToken($res);
-                    //Xóa token cũ (nếu có)
-                    $sql_delete_token = "DELETE FROM public.token WHERE user_id = '$user_id' and device_id = '$device_id'";
-                    $sql_insert_token = "INSERT INTO public.token VALUES('$user_id','$device_id','$token')";
-                    $dbconnection->execute($sql_delete_token);
-                    $dbconnection->execute($sql_insert_token);
+
+                    //Token: user_id, timestart, timelife
+                    date_default_timezone_set("Asia/Ho_Chi_Minh");
+                    $time = time();
+                    $token = new Token($user_id,$time,604800);
+                    //Thêm token
+                    $res->token = $token;
                     
                 } else {
                     $res = new Result(Constant::INVALID_PASSWORD, 'Password is not matching.');
@@ -67,5 +66,4 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
 } else {
     $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 }
-//echo (json_encode($res));
-echo createJsonWebToken($res);
+echo (json_encode($res));
