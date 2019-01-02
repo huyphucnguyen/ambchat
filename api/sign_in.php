@@ -48,8 +48,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                     //Encrypt token
                     $token = encryptData($token_raw,KEY_ENCRYPT);
                     //Thêm token
-                    $tokende = dencryptData($token,KEY_ENCRYPT);
-                    $res->token = json_decode($tokende);
+                    $res->token = $token;
                              
                     
                 } else {
