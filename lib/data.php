@@ -18,7 +18,18 @@ class Result
         $this->sesson_key = $sesson_key;
     }
 }
-
+class Token{
+    public $user_id;
+    public $time_start;
+    public $time_life;
+    
+    public function __construct($user_id, $time_start,$time_life)
+    {
+        $this->user_id = $user_id;
+        $this->time_start = $time_start;
+        $this->time_life = $time_life;
+    }
+}
 class User{
     private $User_ID;
     private $User_Name;
