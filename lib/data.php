@@ -5,6 +5,7 @@ class Result
     public $message;
     public $data;
     public $sesson_key;
+    public $token;
     public function __construct($error, $message)
     {
         $this->error = $error;
