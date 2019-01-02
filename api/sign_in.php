@@ -44,12 +44,12 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                     //Token: user_id, timestart, timelife
                     date_default_timezone_set("Asia/Ho_Chi_Minh");
                     $time = time();
-                    $token_raw = (new Token($user_id,$time,604800));
+                    $token_raw = base64_encode(json_encode(new Token($user_id,$time,604800)));
                     //Encrypt token
                     $token = encryptData($token_raw,KEY_ENCRYPT);
                     //Thêm token
                     $tokende = dencryptData($token,KEY_ENCRYPT);
-                    $res->token = json_encode($tokende);
+                    $res->token = base64_decode($tokende);
                              
                     
                 } else {
