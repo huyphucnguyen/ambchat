@@ -42,7 +42,6 @@ function dencryptData($key){
         return $original_plaintext;
     }
     return null;
-    ?>
 }
 
 
