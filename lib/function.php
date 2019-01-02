@@ -29,7 +29,7 @@ function encryptData($data,$key){
     return $ciphertext;
 }
 
-function dencryptData($key){
+function dencryptData($ciphertext,$key){
     $c = base64_decode($ciphertext);
     $ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
     $iv = substr($c, 0, $ivlen);
