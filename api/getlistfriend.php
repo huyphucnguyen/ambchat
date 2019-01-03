@@ -17,9 +17,9 @@
                 while ($row=pg_fetch_array($result)) 
                 {
                       array_push($arrUser, new User(
-						 $row->user_id,
-						 $row->user_name,
-					     	 $row->full_name));
+						 $row['user_id'],
+						 $row['user_name'],
+					     	 $row['full_name']));
                 }
 			  
 		$res = new Result(Constant::SUCCESS, 'Operation complete successfully.');     
