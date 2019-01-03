@@ -24,9 +24,10 @@ class Token{
     public $time_start;
     public $time_life;
     
-    public function __construct($user_id, $time_start,$time_life)
+    public function __construct($user_id, $device_id,$time_start,$time_life)
     {
         $this->user_id = $user_id;
+        $this->device_id = $device_id;
         $this->time_start = $time_start;
         $this->time_life = $time_life;
     }
