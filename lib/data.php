@@ -33,9 +33,9 @@ class Token{
     }
 }
 class User{
-    private $User_ID;
-    private $User_Name;
-    private $Full_Name;
+    public $User_ID;
+    public $User_Name;
+    public $Full_Name;
     public function __construct($user_id,$user_name,$full_name){
          $this->User_ID=$user_id;
          $this->User_Name=$user_name;
