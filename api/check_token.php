@@ -6,7 +6,7 @@ if (isset($_POST["TOKEN"])) {
     $token = $_POST["TOKEN"];
  
     //Decrypt token is sent by client
-//    $token_decrypt = dencryptData($token,KEY_ENCRYPT);
+    $token_decrypt = dencryptData($token,KEY_ENCRYPT);
     //decode json to class
 //    if($token_decrypt!==null){
 //         $token_data = json_decode($token_decrypt);
