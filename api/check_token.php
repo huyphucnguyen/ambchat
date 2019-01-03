@@ -57,10 +57,10 @@ if (isset($_POST["TOKEN"])) {
 //             }else{
 //                $res = new Result(Constant::INVALID_DATABASE , 'Database is invalid.');  
 //             }
-        }else{
-            //Token is die
-            $res = new Result(Constant::INVALID_TOKEN , 'Token is invalid.');  
-        }
+//         }else{
+//             //Token is die
+//             $res = new Result(Constant::INVALID_TOKEN , 'Token is invalid.');  
+//         }
     }else{
         $res = new Result(Constant::INVALID_TOKEN , 'Token is invalid.');
     }
