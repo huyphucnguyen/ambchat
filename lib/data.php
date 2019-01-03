@@ -58,4 +58,5 @@ class Constant
     const INVALID_TOKEN = -4;
     
     const KEY_ENCRYPT = "dBchm5yOuJxzL7oKVQWf";
+    const TIME_LIFE = 300; //5 phút
 }
