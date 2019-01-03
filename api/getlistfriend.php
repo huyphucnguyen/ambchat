@@ -16,6 +16,9 @@
                  //add element to arrUser
                 while ($row=pg_fetch_array($result)) 
                 {
+			echo $row['user_id'];
+			echo $row['user_name'];
+			echo $row['full_name'];
                       array_push($arrUser, new User(
 						 $row['user_id'],
 						 $row['user_name'],
