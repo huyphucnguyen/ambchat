@@ -20,6 +20,7 @@ class Result
 }
 class Token{
     public $user_id;
+    public $device_id;
     public $time_start;
     public $time_life;
     
