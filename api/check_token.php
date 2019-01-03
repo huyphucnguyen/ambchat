@@ -6,9 +6,9 @@ if (isset($_POST["TOKEN"])) {
     $token = $_POST["TOKEN"];
  
     //Decrypt token is sent by client
-    $token_decrypt = dencryptData($token,KEY_ENCRYPT);
+//    $token_decrypt = dencryptData($token,KEY_ENCRYPT);
     //decode json to class
-    if($token_decrypt!==null){
+//    if($token_decrypt!==null){
 //         $token_data = json_decode($token_decrypt);
 //         $user_id = $token_data->user_id;
 //         $device_id = $token_data->device_id;
@@ -61,9 +61,9 @@ if (isset($_POST["TOKEN"])) {
 //             //Token is die
 //             $res = new Result(Constant::INVALID_TOKEN , 'Token is invalid.');  
 //         }
-    }else{
-        $res = new Result(Constant::INVALID_TOKEN , 'Token is invalid.');
-    }
+//     }else{
+//         $res = new Result(Constant::INVALID_TOKEN , 'Token is invalid.');
+//     }
     
 }else{
   $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
