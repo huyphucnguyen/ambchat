@@ -49,33 +49,20 @@ function dencryptData($ciphertext,$key){
 function setOnline($dbconnection,$user_id,$device_id){
     //Tiến hành ghi bảng user_history và xóa bỏ các records có guid của bảng user_online
     //trùng với guid trong bảng user_history có user_id và device_id trùng khớp
-    $sql_getRe = "SELECT * FROM public.user_history WHERE user_id = '$user_id' and device_id = '$device_id'";
+    $sql_getRe = "SELECT * FROM public.user_online WHERE user_id = '$user_id' and device_id = '$device_id'";
     $result_getRe = $dbconnection->select($sql_getRe);
     if($result_getRe !== null){
-
-        if (pg_num_rows($result_getRe) > 0){
-            //Có tồn tại
-            $data1 = pg_fetch_object($result_getRe);
-            $guid_old = $data1->guid;
-
-            //Tiến hành xóa những record đã tồn tại trong bảng user_online
-            $sql_remove_online = "DELETE FROM public.user_online WHERE guid = '$guid_old'";
-            //Cập nhật guid trong bảng $user_history
-            $sql_update_history = "UPDATE public.user_history SET guid = '$guid' WHERE user_id = '$user_id' and device_id = '$device_id'";
-
-            $dbconnection->execute($sql_remove_online);
-            $dbconnection->execute($sql_update_history);
-
-        } else{
-            //Không tồn tại thì insert vô | timeout = 1 tuần: 604800
-            $sql_insert_hi = "INSERT INTO public.user_history VALUES('$user_id','$device_id','$guid')";
-            $dbconnection->execute($sql_insert_hi);
-        }
         date_default_timezone_set("Asia/Ho_Chi_Minh"); 
         $time = time();
-        $sql_insert_on = "INSERT INTO public.user_online VALUES('$guid','$time',604800)";
-        $dbconnection->execute($sql_insert_on);
-
+        if (pg_num_rows($result_getRe) > 0){
+            //Có tồn tại thì cập nhật
+            $sql_update = "UPDATE public.user_online SET time_start = '$time' WHERE user_id = '$user_id' and device_id = '$device_id'";
+            $dbconnection->execute($sql_update);
+        } else{
+            //Không tồn tại thì insert vô | time_life = 5 phút: 300
+            $sql_insert_hi = "INSERT INTO public.user_online VALUES('$user_id','$device_id','$time',300)";
+            $dbconnection->execute($sql_insert_hi);
+        }
         $dbconnection->closeResult($result_getRe);
     } else{
         //Trả về thông báo lỗi => Đã đăng nhập thành công thì có thông báo thành công => có cần thông báo không?
