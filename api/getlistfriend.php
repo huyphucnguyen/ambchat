@@ -16,13 +16,10 @@
                  //add element to arrUser
                 while ($row=pg_fetch_array($result)) 
                 {
-			echo $row['user_id'];
-			echo $row['user_name'];
-			echo $row['full_name'];
-                      array_push($arrUser, new User(
-						 $row['user_id'],
-						 $row['user_name'],
-					     	 $row['full_name']));
+			$user_id =  $row['user_id'];
+			$user_name = $row['user_name'];
+			$full_name =  $row['full_name'];
+                      array_push($arrUser, new User($user_id,$user_name,$full_name));
                 }
 			  
 		$res = new Result(Constant::SUCCESS, 'Operation complete successfully.');     
