@@ -39,7 +39,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
                     $res->data = $user;
                     $user_id = $user->user_id;
                     //Set online status that was login successfully
-                    //setOnline($dbconnection,$user_id,$device_id);
+                    setOnline($dbconnection,$user_id,$device_id);
 
                     //Token: user_id, timestart, timelife
                     date_default_timezone_set("Asia/Ho_Chi_Minh");
