@@ -36,7 +36,7 @@ class User{
     private $User_ID;
     private $User_Name;
     private $Full_Name;
-     function __construct($user_id,$user_name,$full_name){
+    public function __construct($user_id,$user_name,$full_name){
          $this->User_ID=$user_id;
          $this->User_Name=$user_name;
          $this->Full_Name=$full_name;
