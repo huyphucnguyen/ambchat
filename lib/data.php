@@ -36,10 +36,12 @@ class User{
     public $User_ID;
     public $User_Name;
     public $Full_Name;
-    public function __construct($user_id,$user_name,$full_name){
+    public $status;
+    public function __construct($user_id,$user_name,$full_name,$status){
          $this->User_ID=$user_id;
          $this->User_Name=$user_name;
          $this->Full_Name=$full_name;
+         $this->status=$status;
     }
  }
 
