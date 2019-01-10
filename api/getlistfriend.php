@@ -19,7 +19,13 @@
 			$user_id =  $row['user_id'];
 			$user_name = $row['user_name'];
 			$full_name =  $row['full_name'];
-                      array_push($arrUser, new User($user_id,$user_name,$full_name));
+			
+			$status = "offline";
+			if(getStatusUser($dbconnection,$user_id) == 1){
+				$status = "online";
+			}
+			
+                      array_push($arrUser, new User($user_id,$user_name,$full_name,$status));
                 }
 			  
 		$res = new Result(Constant::SUCCESS, 'Operation complete successfully.');     
