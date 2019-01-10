@@ -3,6 +3,7 @@
     header('Content-Type: application/json');
     include "../lib/data.php"; 
     include "../lib/db.php";
+    include "../lib/function.php":
     $res = null;
     $sql = "SELECT * FROM \"public\".\"user\" ";
     $dbconnection = new postgresql("");
