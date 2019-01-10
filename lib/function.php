@@ -60,7 +60,7 @@ function setOnline($dbconnection,$user_id,$device_id){
 
 //function get status online or ofline
 function getStatusUser($dbconnection,$user_id){
-    $sql = "SELECT public.user_online WHERE user_id = '$user_id'";
+    $sql = "SELECT * FROM public.user_online WHERE user_id = '$user_id'";
     $result = $dbconnection->select($sql);
     if($sql!==null){
         if(pg_num_rows($result) > 0){
