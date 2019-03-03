@@ -28,10 +28,10 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
         $data = pg_fetch_object($result);
         $str_frients = $data->friend_id_list;
         echo "str = '$str_frients'";
-        if($str_friends.strlen!=0){
+        if($str_friends.strlen()!=0){
           $str_friends.= ',';
         }
-        $str_friends.="{$friend_id}";
+        $str_friends=$str_friends.$friend_id;
        echo $str_friends;
        $sql_update = "UPDATE public.friends SET friend_id_list = '$str_friends' WHERE user_id = '$user_id'";
        $dbconnection->execute($sql_update);
