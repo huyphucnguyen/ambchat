@@ -29,7 +29,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
         $str_friends.='$friend_id';
       }
     
-  
+    $dbconnection->closeResult($result);
     } //$result !==null
     else {
       $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
@@ -45,4 +45,4 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
 else {
   $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 }
-echo $res;
+echo (json_encode($res));
