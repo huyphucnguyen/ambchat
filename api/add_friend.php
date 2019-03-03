@@ -26,8 +26,9 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
       else{
         $sql1 = "SELECT friend_id_list FROM public.friends WHERE user_id = '$user_id'";
         $result1 = $dbconnection->select($sql1);
-        $str_frients = (pg_fetch_object($result1))->friend_id_list;
-        if($str_friends!=null){
+        $data = pg_fetch_object($result1);
+        $str_frients = $data->friend_id_list;
+        if($str_friends.strlen!=0){
           $str_friends.= ',';
         }
         $str_friends.="{$friend_id}";
