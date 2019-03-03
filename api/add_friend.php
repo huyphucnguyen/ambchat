@@ -10,16 +10,16 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
   include '../lib/db.php';
   $dbconnection = new postgresql("");
   if($dbconnection->isValid()){
-    $sql = "SELECT user_id FROM public.friends where user_id = '$user_id'";
-    $result = $dbconnection->select($sql);
+//     $sql = "SELECT user_id FROM public.friends where user_id = '$user_id'";
+//     $result = $dbconnection->select($sql);
   
     if($result !==null){
       //TH1: User is exits
-//       if(pg_num_rows($result)<=0){
+       if(pg_num_rows($result)<=0){
 //         //ex: "'1','444','0545'"
 //         $sql_i = "INSERT INTO public.friends VALUES('$user_id','$friend_id')";
 //         $dbconnection->execute($sql_i);
-//         $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+         $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       } //pg_num_rows($result)>1
       //TH2: User is not exits
       else{
