@@ -5,6 +5,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
   $user_id = $_GET['user_id'];
   $friend_id = $_GET['friend_id'];
  
+ $res = "hello";
   //Connect to database 
   include '../lib/db.php';
   $dbconnection = new postgresql("");
