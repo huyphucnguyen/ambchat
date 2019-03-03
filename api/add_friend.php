@@ -16,7 +16,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
   
     if($result !==null){
       //TH1: User is exits
-     $friend_id = "\'".$friend_id."\'";
+     $friend_id = "\"".$friend_id."\"";
        if(pg_num_rows($result)==0){
         //ex: "'1','444','0545'"
         $sql_i = "INSERT INTO public.friends VALUES('$user_id','$friend_id')";
