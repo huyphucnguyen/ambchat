@@ -17,7 +17,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
       //TH1: User is exits
        if(pg_num_rows($result)==0){
         //ex: "'1','444','0545'"
-        $sql_i = "INSERT INTO \"public\".\"friends\" VALUES(E'$user_id',E'\'$friend_id\'')";
+        $sql_i = "INSERT INTO \"public\".\"friends\" VALUES('$user_id','$friend_id')";
         echo $sql_i;
         $dbconnection->execute($sql_i);
          $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
@@ -26,14 +26,19 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
       else{
         $data = pg_fetch_object($result);
         $str_friends = $data->friend_id_list;
-        $com = '';
-        if(strlen($str_friends)!=0){
-          $com = ',';
-        }
+        
+        //Check friend_id is exits
+        $arr = explode(",",$str_friends);
+        if(!in_array($friend_id,$arr)){
+          if(strlen($str_friends)!=0){
+            $str_friends.=',';
+          }
       
-       $sql_update = "UPDATE public.friends SET friend_id_list = E'$com'.'\'$str_friends\'' WHERE user_id = '$user_id'";
-       $dbconnection->execute($sql_update);
-        $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+          $sql_update = "UPDATE public.friends SET friend_id_list = '$str_friends' WHERE user_id = '$user_id'";
+          $dbconnection->execute($sql_update);
+  
+        }
+          $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       }
     
     $dbconnection->closeResult($result);
