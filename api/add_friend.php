@@ -27,6 +27,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
       else{
         $data = pg_fetch_object($result);
         $str_frients = $data->friend_id_list;
+        echo "str = '$str_frients'";
         if($str_friends.strlen!=0){
           $str_friends.= ',';
         }
