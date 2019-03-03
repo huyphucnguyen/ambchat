@@ -31,7 +31,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
           $com = ',';
         }
       
-       $sql_update = "UPDATE public.friends SET friend_id_list = E'$com.\'$str_friends\'' WHERE user_id = '$user_id'";
+       $sql_update = "UPDATE public.friends SET friend_id_list = E'$com'.'\'$str_friends\'' WHERE user_id = '$user_id'";
        $dbconnection->execute($sql_update);
         $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       }
