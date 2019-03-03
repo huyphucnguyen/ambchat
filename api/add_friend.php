@@ -29,7 +29,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
         if($str_friends!=null){
           $str_friends.= ',';
         }
-        $str_friends.='$friend_id';
+        $str_friends.="'{$friend_id}'";
        
        $sql_update = "UPDATE public.friends SET friend_id_list = '$str_friends' WHERE user_id = '$user_id'";
        $dbconnection->execute($sql_update);
