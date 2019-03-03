@@ -13,12 +13,12 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
   if($dbconnection->isValid()){
      $sql = "SELECT * FROM public.friends WHERE user_id = '$user_id'";
      $result = $dbconnection->select($sql);
-  
+     $friend_id = "\'".$friend_id."\'";
     if($result !==null){
       //TH1: User is exits
        if(pg_num_rows($result)==0){
         //ex: "'1','444','0545'"
-        $sql_i = "INSERT INTO public.friends VALUES('$user_id','$friend_id')";
+        $sql_i = "INSERT INTO public.friends('user_id', 'friend_id_list') VALUES('$user_id','{$friend_id}')";
         $dbconnection->execute($sql_i);
          $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       } //pg_num_rows($result)>1
@@ -32,7 +32,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
         }
       
         $str_friends.=$friend_id;
-       $sql_update = "UPDATE public.friends SET friend_id_list = '$str_friends' WHERE user_id = '$user_id'";
+       $sql_update = "UPDATE public.friends SET friend_id_list = '{$str_friends}' WHERE user_id = '$user_id'";
        $dbconnection->execute($sql_update);
         $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       }
