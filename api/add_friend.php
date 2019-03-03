@@ -5,7 +5,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
   $user_id = $_GET['user_id'];
   $friend_id = $_GET['friend_id'];
  
- $res = "hello";
+
   //Connect to database 
   include '../lib/db.php';
   $dbconnection = new postgresql("");
@@ -18,6 +18,8 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
       if(pg_num_rows($result)<=0){
         //ex: "'1','444','0545'"
         $sql_i = "INSERT INTO public.friends VALUES('$user_id','friend_id')";
+        $dbconnection->execute($sql_i);
+        $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       } //pg_num_rows($result)>1
       //TH2: User is not exits
       else{
@@ -28,6 +30,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
           $str_friends.= ',';
         }
         $str_friends.='$friend_id';
+        $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       }
     
     $dbconnection->closeResult($result);
