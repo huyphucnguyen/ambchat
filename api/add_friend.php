@@ -26,11 +26,11 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
       //TH2: User is not exits
       else{
         $data = pg_fetch_object($result);
-        $str_frients = $data->friend_id_list;
-        $arr = explode(',',$str_frients,-1);
-//         if($str_friends.strlen()!=0){
-//           $str_friends.= ',';
-//         }
+        $str_friends = $data->friend_id_list;
+      
+        if($str_friends.strlen()!=0){
+          $str_friends.= ',';
+        }
        $str_friends = implode(',',$arr);
         $str_friends=$str_friends.$friend_id;
        echo $str_friends;
