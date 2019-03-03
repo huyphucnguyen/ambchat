@@ -11,22 +11,21 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
   include '../lib/db.php';
   $dbconnection = new postgresql("");
   if($dbconnection->isValid()){
-     $sql = "SELECT user_id FROM public.friends where user_id = '$user_id'";
+     $sql = "SELECT * FROM public.friends WHERE user_id = '$user_id'";
      $result = $dbconnection->select($sql);
   
     if($result !==null){
       //TH1: User is exits
-       if(pg_num_rows($result)<=0){
+       if(pg_num_rows($result)==0){
         //ex: "'1','444','0545'"
+        echo "why?";
         $sql_i = "INSERT INTO public.friends VALUES('$user_id','$friend_id')";
         $dbconnection->execute($sql_i);
          $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       } //pg_num_rows($result)>1
       //TH2: User is not exits
       else{
-        $sql1 = "SELECT friend_id_list FROM public.friends WHERE user_id = '$user_id'";
-        $result1 = $dbconnection->select($sql1);
-        $data = pg_fetch_object($result1);
+        $data = pg_fetch_object($result);
         $str_frients = $data->friend_id_list;
         if($str_friends.strlen!=0){
           $str_friends.= ',';
