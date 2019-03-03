@@ -17,7 +17,7 @@ if(isset($_GET['user_id'])&&isset($_GET['friend_id'])){
       //TH1: User is exits
        if(pg_num_rows($result)==0){
         //ex: "'1','444','0545'"
-        $sql_i = "INSERT INTO public.friends('user_id', 'friend_id_list') VALUES('$user_id','\'$friend_id\'')";
+        $sql_i = "INSERT INTO public.friends(`user_id`, `friend_id_list`) VALUES('$user_id','\'$friend_id\'')";
         $dbconnection->execute($sql_i);
          $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       } //pg_num_rows($result)>1
