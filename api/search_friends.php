@@ -13,32 +13,32 @@ if(isset($_GET['keysearch'])){
       $sql = "SELECT full_name,picture,email,gender,user_id,phone FROM public.user WHERE full_name LIKE '%$str%'";
    }
       
-   if($sql!=null){
-      include "../lib/db.php";
-      $dbconnection = new postgresql("");
-      if($dbconnection->isValid()){
-        $result = $dbconnection->select($sql);
-        if($result !==null){
-          if(pg_num_rows($result)>0){
-              $arr = pg_fetch_all($result);
-              $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
-              $res->data = $arr;
-          } //pg_num_rows($result)>0
-          else{
-            $res = new Result(Constant::INVALID_USER, 'User is not exist');
-          }
-        }//$result !==null
-        else{
-           $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
-        }
-      } //$dbconnection->isValid()
-      else{
-            $res = new Result(Constant::INVALID_DATABASE , 'Database is invalid.');  
-        }
-   } //$sql!=null
-   else{
-      $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
-   }
+//    if($sql!=null){
+//       include "../lib/db.php";
+//       $dbconnection = new postgresql("");
+//       if($dbconnection->isValid()){
+//         $result = $dbconnection->select($sql);
+//         if($result !==null){
+//           if(pg_num_rows($result)>0){
+//               $arr = pg_fetch_all($result);
+//               $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+//               $res->data = $arr;
+//           } //pg_num_rows($result)>0
+//           else{
+//             $res = new Result(Constant::INVALID_USER, 'User is not exist');
+//           }
+//         }//$result !==null
+//         else{
+//            $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+//         }
+//       } //$dbconnection->isValid()
+//       else{
+//             $res = new Result(Constant::INVALID_DATABASE , 'Database is invalid.');  
+//         }
+//    } //$sql!=null
+//    else{
+//       $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+//    }
 } //isset($_GET['keysearch'])
 else {
   $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
