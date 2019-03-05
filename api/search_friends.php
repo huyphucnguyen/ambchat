@@ -6,12 +6,12 @@ if(isset($_GET['keysearch'])){
    $re = '/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/m';
    $str = $_GET['keysearch'];
    $sql=null;
-   if(preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER , 0){
-      $sql = "SELECT full_name,picture,email,gender,user_id,phone FROM public.user WHERE phone LIKE '$str%'";
-   } //preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER , 0
-   else{
-      $sql = "SELECT full_name,picture,email,gender,user_id,phone FROM public.user WHERE full_name LIKE '%$str%'";
-   }
+//    if(preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER , 0){
+//       $sql = "SELECT full_name,picture,email,gender,user_id,phone FROM public.user WHERE phone LIKE '$str%'";
+//    } //preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER , 0
+//    else{
+//       $sql = "SELECT full_name,picture,email,gender,user_id,phone FROM public.user WHERE full_name LIKE '%$str%'";
+//    }
       
 //    if($sql!=null){
 //       include "../lib/db.php";
