@@ -7,7 +7,7 @@ if(isset($_GET['keysearch'])){
    $str = $_GET['keysearch'];
    $sql=null;
    $matches = null;
-   if(preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER , 0){
+   if(preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER){
       //$sql = "SELECT full_name,picture,email,gender,user_id,phone FROM public.user WHERE phone LIKE '$str%'";
    } //preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER , 0
 //    else{
