@@ -1,44 +1,81 @@
 <?php
-
-    header('Content-Type: application/json');
-    include "../lib/data.php"; 
-    include "../lib/db.php";
-    include "../lib/function.php";
-    $res = null;
-    $sql = "SELECT * FROM \"public\".\"user\" ";
-    $dbconnection = new postgresql("");
-
-    if($dbconnection->isValid()) {
-   	$result = $dbconnection->select($sql);
-	if($result!==null){
-		// create array user
-                $arrUser=array();
-		$data=null;
-                 //add element to arrUser
-                while ($row=pg_fetch_array($result)) 
-                {
-			$user_id =  $row['user_id'];
-			$user_name = $row['user_name'];
-			$full_name =  $row['full_name'];
-			
-			$status = "offline";
-			if(getStatusUser($dbconnection,$user_id) == 1){
-				$status = "online";
-			}
-			
-                      array_push($arrUser, new User($user_id,$user_name,$full_name,$status));
-                }
-			  
-		$res = new Result(Constant::SUCCESS, 'Operation complete successfully.');     
-                $res->data = $arrUser;	
-	}  else{
-		$res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
-	}
-	$dbconnection->close();
-         	 
-	} else{
-	        $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
-	}
-    // Chuyen dinh dang cua mang thanh JSON
-    echo (json_encode($res));
+ header('Content-Type: application/json');
+$res = null;
+include "../lib/data.php";
+if(isset($_GET['user_id'])){
+  $user_id = $_GET['user_id'];
+	
+  //Connect to database 
+  include '../lib/db.php';
+  $dbconnection = new postgresql("");
+  if($dbconnection->isValid()){
+     $sql = "SELECT * FROM public.friends WHERE user_id = '$user_id'";
+     $result = $dbconnection->select($sql);
+    if($result !==null){
+	$user = null;
+       if(pg_num_rows($result)>0){
+	  $user = pg_fetch_object($result);
+	  $friend_list = $user->friend_id_list;
+	  $arr = explode(",",$friend_list);
+          $size = sizeof($arr);
+	  $true_friends_list = array();
+	  for($i = 0;$i < $size ; $i++){
+		$fr_id = $arr[i];
+		//Kiem tra trong database có dòng user_id là $fr chứa $user_id không?
+		$sql2 = "SELECT * FROM public.friends WHERE user_id = '$fr_id'";
+		$result2 = $dbconnection->select($sql2);
+		if($result2 !== null){
+		   if(pg_num_rows($result2)>0){
+			$data = pg_fetch_object($result2);
+			$str_friends = $data->friend_id_list;
+			$arr2 = explode(",",$str_friends);
+			if(in_array($user_id,$arr2)){
+			    $sql3 = "SELECT user_id,full_name,picture,email,gender,
+			    user_id,phone FROM public.user WHERE user_id = '$fr_id'";
+			    $result3 = $dbconnection->select($sql2);
+			    if($result3!==null){
+				$data_fr = pg_fetch_object($result3);
+				array_push($true_friends_list,$data_fr);
+				$dbconnection->closeResult($result3);
+			    }//$result3!=null;
+			    else{
+				$res = new Result(Constant::GENERAL_ERROR,
+				   'There was an error while processing request. Please try again later.');
+			    }
+					
+			}//in_array($user_id,$arr2)
+		    }//pg_num_rows($result2)>0
+		    else{
+			$res = new Result(Constant::INVALID_USER, 'User is not exist');
+		    }
+		    $dbconnection->closeResult($result2);
+		}//$result2 !== null
+		else{
+			$res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+		}
+		
+	}//for()
+	$res->data = $true_friends_list;
+        $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+      } //pg_num_rows($result)>1
+      else{
+        $res = new Result(Constant::INVALID_USER, 'User is not exist');
+      }
+      $dbconnection->closeResult($result);
+    } //$result !==null
+    else {
+      $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+    }
+    $dbconnection->close();
+  
+ }//$dbconnection->isValid()
+ else{
+    $res = new Result(Constant::INVALID_DATABASE , 'Database is invalid.');  
+ }
+  
+}  //isset($_GET['user_id'])
+else {
+  $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
+}
+echo (json_encode($res));
 ?>
