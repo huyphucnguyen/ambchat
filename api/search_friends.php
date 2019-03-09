@@ -3,7 +3,8 @@ header('Content-Type: application/json');
 $res = null;
 include "../lib/data.php";
 if(isset($_GET['keysearch'])){
-   $re = '/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/m';
+   $re = '/^\s*(\(?\+?\d{2}\)?|0)([-. ]*(\d{2,3})[-. ]*)?((\d{3})[-. ]*(\d{3,4}))?\s*$';
+   //https://regex101.com/r/HfydMF/1
    $str = $_GET['keysearch'];
    $sql=null;
    $matches = null;
