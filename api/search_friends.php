@@ -2,10 +2,10 @@
 header('Content-Type: application/json');
 $res = null;
 include "../lib/data.php";
-if(isset($_POST['keysearch'])){
+if(isset($_GET['keysearch'])){
    $re = '/^\s*(^0|^(\(?\+?[1-9]{1,3}\)?))?([-. ]*[1-9]\d{2}[-. ]*)?\d{2}[-. ]*\d{4}?/m';
    //https://regex101.com/r/HfydMF/2
-   $str = $_POST['keysearch'];
+   $str = $_GET['keysearch'];
    $sql=null;
    $matches = null;
     if(preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER)){
