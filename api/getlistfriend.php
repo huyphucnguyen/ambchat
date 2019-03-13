@@ -16,6 +16,7 @@ if(isset($_POST['user_id'])){
        if(pg_num_rows($result)>0){
 	  $user = pg_fetch_object($result);
 	  $friend_list = $user->friend_id_list;
+	       echo $friend_list;
 	  $arr = explode(",",$friend_list);
           $size = sizeof($arr);
 	  $true_friends_list = array();
