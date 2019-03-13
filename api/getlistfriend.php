@@ -56,9 +56,8 @@ if(isset($_POST['user_id'])){
 		}
 		
 	}//for()
-	$res->data = $true_friends_list;
-	echo sizeof($true_friends_list);
         $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+	$res->data = $true_friends_list;
       } //pg_num_rows($result)>1
       else{
         $res = new Result(Constant::INVALID_USER, 'User is not exist');
