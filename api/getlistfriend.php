@@ -9,7 +9,7 @@ if(isset($_POST['user_id'])){
   include '../lib/db.php';
   $dbconnection = new postgresql("");
   if($dbconnection->isValid()){
-     $sql = "SELECT * FROM public.friends WHERE user_id = '{$user_id}'";
+     //$sql = "SELECT * FROM public.friends WHERE user_id = '{$user_id}'";
      $result = $dbconnection->select($sql);
     if($result !==null){
 	$user = null;
