@@ -21,6 +21,7 @@ if(isset($_POST['user_id'])){
 	  $true_friends_list = array();
 	  for($i = 0;$i < $size ; $i++){
 		$fr_id = $arr[i];
+		  echo $fr_id.',';
 		//Kiem tra trong database có dòng user_id là $fr chứa $user_id không?
 		$sql2 = "SELECT * FROM public.friends WHERE user_id = '{$fr_id}'";
 		$result2 = $dbconnection->select($sql2);
