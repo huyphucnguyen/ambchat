@@ -9,7 +9,7 @@ if(isset($_POST['user_id'])){
   include '../lib/db.php';
   $dbconnection = new postgresql("");
   if($dbconnection->isValid()){
-     $sql = "SELECT * FROM public.friends WHERE user_id = '$user_id'";
+     $sql = "SELECT * FROM public.friends WHERE user_id = '{$user_id}'";
      $result = $dbconnection->select($sql);
     if($result !==null){
 	$user = null;
@@ -22,7 +22,7 @@ if(isset($_POST['user_id'])){
 	  for($i = 0;$i < $size ; $i++){
 		$fr_id = $arr[i];
 		//Kiem tra trong database có dòng user_id là $fr chứa $user_id không?
-		$sql2 = "SELECT * FROM public.friends WHERE user_id = '$fr_id'";
+		$sql2 = "SELECT * FROM public.friends WHERE user_id = '{$fr_id}'";
 		$result2 = $dbconnection->select($sql2);
 		if($result2 !== null){
 		   if(pg_num_rows($result2)>0){
