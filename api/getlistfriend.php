@@ -37,7 +37,6 @@ if(isset($_POST['user_id'])){
 			    if($result3!==null){
 				$data_fr = pg_fetch_object($result3);
 				array_push($true_friends_list,$data_fr);
-				    echo sizeof($true_friends_list);
 				$dbconnection->closeResult($result3);
 			    }//$result3!=null;
 			    else{
@@ -58,6 +57,7 @@ if(isset($_POST['user_id'])){
 		
 	}//for()
 	$res->data = $true_friends_list;
+	echo sizeof($true_friends_list);
         $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       } //pg_num_rows($result)>1
       else{
