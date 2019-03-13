@@ -32,6 +32,7 @@ if(isset($_POST['user_id'])){
 			if(in_array($user_id,$arr2)){
 			    $sql3 = "SELECT user_id,full_name,picture,email,gender,
 			    user_id,phone FROM public.user WHERE user_id = '$fr_id'";
+				echo $sql3;
 			    $result3 = $dbconnection->select($sql3);
 			    if($result3!==null){
 				$data_fr = pg_fetch_object($result3);
