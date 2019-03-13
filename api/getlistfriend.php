@@ -31,14 +31,13 @@ if(isset($_POST['user_id'])){
 			$str_friends = $data->friend_id_list;
 			$arr2 = explode(",",$str_friends);
 			if(in_array($user_id,$arr2)){
-				echo "co";
 			    $sql3 = "SELECT user_id,full_name,picture,email,gender,
 			    user_id,phone FROM public.user WHERE user_id = '$fr_id'";
 			    $result3 = $dbconnection->select($sql3);
 			    if($result3!==null){
-				    echo "cp2";
 				$data_fr = pg_fetch_object($result3);
 				array_push($true_friends_list,$data_fr);
+				    echo sizeof($true_friends_list);
 				$dbconnection->closeResult($result3);
 			    }//$result3!=null;
 			    else{
