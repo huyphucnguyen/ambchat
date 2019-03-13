@@ -24,6 +24,7 @@ if(isset($_POST['user_id'])){
 		  echo $fr_id;
 		//Kiem tra trong database có dòng user_id là $fr chứa $user_id không?
 		$sql2 = "SELECT * FROM public.friends WHERE user_id = '$fr_id'";
+		  echo $sql2;
 		$result2 = $dbconnection->select($sql2);
 		if($result2 !== null){
 		   if(pg_num_rows($result2)>0){
