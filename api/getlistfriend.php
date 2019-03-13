@@ -19,9 +19,9 @@ if(isset($_POST['user_id'])){
 	  $arr = explode(",",$friend_list);
           $size = sizeof($arr);
 	  $true_friends_list = array();
-// 	  for($i = 0;$i < $size ; $i++){
-// 		$fr_id = $arr[i];
-// 		  echo $fr_id.',';
+	  for($i = 0;$i < $size ; $i++){
+		$fr_id = $arr[i];
+		echo $fr_id.',';
 // 		//Kiem tra trong database có dòng user_id là $fr chứa $user_id không?
 // 		$sql2 = "SELECT * FROM public.friends WHERE user_id = '{$fr_id}'";
 // 		$result2 = $dbconnection->select($sql2);
@@ -55,7 +55,7 @@ if(isset($_POST['user_id'])){
 // 			$res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
 // 		}
 		
-// 	}//for()
+	}//for()
 	$res->data = $true_friends_list;
         $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       } //pg_num_rows($result)>1
