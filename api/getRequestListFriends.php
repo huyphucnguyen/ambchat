@@ -13,7 +13,7 @@ if(isset($_POST['user_id'])){
         if($result!==null){
             if(pg_num_rows($result)>0){
                 $data = pg_fetch_object($result);
-                $request_id = $data->$request_id;
+                $request_id = $data->request_id;
                 $arr = explode(",",$request_id);
 		$request_id = '('.$request_id.')';
                 $sql = "select * from public.user where user_id in $request_id";
