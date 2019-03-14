@@ -16,10 +16,10 @@ if(isset($_POST['user_id'])){
                 $request_id = $data->$request_id;
                 $arr = explode(",",$request_id);
                 $sql = "select * from public.user where user_id in '{$arr}'";
-                $result1 = dbconnection->select($sql);
-                $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
-                $true_friends_list = pg_fetch_array($result);
-	              $res->data = $true_friends_list;
+//                 $result1 = dbconnection->select($sql);
+//                 $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+//                 $true_friends_list = pg_fetch_array($result1);
+// 	              $res->data = $true_friends_list;
             }//pg_num_rows($result)>0
             else {
                 $res = new Result(Constant::INVALID_USER, 'User is not exist');
