@@ -17,6 +17,7 @@ if(isset($_POST['user_id'])){
                 $arr = explode(",",$request_id);
 		$request_id = '('.$request_id.')';
                 $sql = "select * from public.user where user_id in $request_id";
+		echo $sql;
                 $result1 = $dbconnection->select($sql);
                 $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
                 $true_friends_list = pg_fetch_array($result1);
