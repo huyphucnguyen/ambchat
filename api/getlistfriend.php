@@ -28,13 +28,14 @@ if(isset($_POST['user_id'])){
 		   if(pg_num_rows($result2)>0){
 			$data = pg_fetch_object($result2);
 			   echo json_encode($data);
-			$str_friends = $data->friend_id_list;
+			//$str_friends = $data->friend_id_list;
 			$arr2 = explode(",",$str_friends);
 			if(in_array($user_id,$arr2)){
 			    $sql3 = "SELECT user_id,full_name,picture,email,gender,
 			    user_id,phone FROM public.user WHERE user_id = '$fr_id'";
 			    $result3 = $dbconnection->select($sql3);
 			    if($result3!==null){
+				   
 				$data_fr = pg_fetch_object($result3);
 				array_push($true_friends_list,$data_fr);
 				$dbconnection->closeResult($result3);
