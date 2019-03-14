@@ -23,7 +23,7 @@ if(isset($_POST['user_id'])){
 			array_push($list_request,$list);
 		}
                 $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
-	        $res->data = $true_friends_list;
+	        $res->data = $list_request;
 		$dbconnection->closeResult($result1);
             }//pg_num_rows($result)>0
             else {
