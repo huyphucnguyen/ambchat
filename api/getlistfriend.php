@@ -28,7 +28,7 @@ if(isset($_POST['user_id'])){
 		   if(pg_num_rows($result2)>0){
 			$data = pg_fetch_object($result2);
 			   echo json_encode($data);
-			//$str_friends = $data->friend_id_list;
+			$str_friends = $data->friend_id_list;
 			$arr2 = explode(",",$str_friends);
 			if(in_array($user_id,$arr2)){
 			    $sql3 = "SELECT user_id,full_name,picture,email,gender,
