@@ -3,11 +3,11 @@ header('Content-Type:application/json');
 include "../lib/data.php";
 $res = null;
 if(isset($_POST['user_id'])){
-//     $user_id = $_POST['user_id'];
-//     $sql = "SELECT * FROM public.friend_requests WHERE user_id = '$user_id'";
-//     //init database
-//     include "../lib/db.php";
-//     $dbconnection = new postgresql("");
+    $user_id = $_POST['user_id'];
+    $sql = "SELECT * FROM public.friend_requests WHERE user_id = '$user_id'";
+    //init database
+    include "../lib/db.php";
+    $dbconnection = new postgresql("");
 //     if($dbconnection->isValid()){
 //         $result = dbconnection->select($sql);
 // //         if($result!==null){
