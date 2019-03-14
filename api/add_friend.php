@@ -3,8 +3,8 @@
 $res = null;
 include "../lib/data.php";
 if(isset($_POST['user_id'])&&isset($_POST['friend_id'])){
-  $user_id = $_GET['user_id'];
-  $friend_id = $_GET['friend_id'];
+  $user_id = $_POST['user_id'];
+  $friend_id = $_POST['friend_id'];
  
 
   //Connect to database 
