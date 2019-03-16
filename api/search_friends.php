@@ -72,7 +72,7 @@ if(isset($_POST['keysearch'])&&isset($_POST['user_id'])){
                  array_push($list_search,$data);
               } //while
               $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
-              $res->data = $arr;
+              $res->data = $list_search;
              //Xử lý trạng thái bạn bè
              
           } //pg_num_rows($result)>0
