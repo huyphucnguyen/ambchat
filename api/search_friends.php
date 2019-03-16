@@ -31,9 +31,9 @@ if(isset($_POST['keysearch'])&&isset($_POST['user_id'])){
                  if($result_fr!==null){
                     if(pg_num_rows($result_fr)>0){
                         $friend_list = pg_fetch_row($result_fr);
-                        $friend_list = '('.$friend_list.')';
                         $arr = explode(",",$friend_list);
                         if(in_array($user_id_found,$arr)){
+                           echo haha;
                            $sql2 = "SELECT * FROM public.friends WHERE user_id = '$user_id_found'";
                            $result_fr2 = $dbconnection->select($sql2);
                            if($result_fr2!==null){
