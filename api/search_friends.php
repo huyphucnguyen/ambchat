@@ -26,49 +26,52 @@ if(isset($_POST['keysearch'])&&isset($_POST['user_id'])){
           if(pg_num_rows($result)>0){
               while($data = pg_fetch_object($result)){
                  $user_id_found = $data->user_id;
-                 $sql = "SELECT * FROM public.friends WHERE user_id = '$user_id'";
-                 $result_fr = $dbconnection->select($sql);
-                 if($result_fr!==null){
-                    if(pg_num_rows($result_fr)>0){
-                        $friend_list = (pg_fetch_object($result_fr))->friend_id_list;
-                        $arr = explode(",",$friend_list);
-                        if(in_array($user_id_found,$arr)){
-                           $sql2 = "SELECT * FROM public.friends WHERE user_id = '$user_id_found'";
-                           $result_fr2 = $dbconnection->select($sql2);
-                           if($result_fr2!==null){
-                                if(pg_num_rows($result_fr2)>0){
-                                   $friend_list_found = (pg_fetch_object($result_fr2))->friend_id_list;
-                                   $arr1 = explode(",",$friend_list_found);
-                                   if(in_array($user_id,$arr1)){
-                                      $data->friend_status = 1;
-                                   }//in_array($user_id,$arr1)
-                                   else{
+                 if($user_id_found!=$user_id){
+                     $sql = "SELECT * FROM public.friends WHERE user_id = '$user_id'";
+                     $result_fr = $dbconnection->select($sql);
+                     if($result_fr!==null){
+                       if(pg_num_rows($result_fr)>0){
+                           $friend_list = (pg_fetch_object($result_fr))->friend_id_list;
+                           $arr = explode(",",$friend_list);
+                           if(in_array($user_id_found,$arr)){
+                              $sql2 = "SELECT * FROM public.friends WHERE user_id = '$user_id_found'";
+                              $result_fr2 = $dbconnection->select($sql2);
+                              if($result_fr2!==null){
+                                   if(pg_num_rows($result_fr2)>0){
+                                      $friend_list_found = (pg_fetch_object($result_fr2))->friend_id_list;
+                                      $arr1 = explode(",",$friend_list_found);
+                                      if(in_array($user_id,$arr1)){
+                                         $data->friend_status = 1;
+                                      }//in_array($user_id,$arr1)
+                                      else{
+                                          $data->friend_status = 0;
+                                      }
+                                       $sql3 = "SELECT * FROM public.friends WHERE user_id = '$user_id_found'";
+                                   }//pg_num_rows($result_fr2)>0
+                                    else{
                                        $data->friend_status = 0;
-                                   }
-                                    $sql3 = "SELECT * FROM public.friends WHERE user_id = '$user_id_found'";
-                                }//pg_num_rows($result_fr2)>0
-                                 else{
-                                    $data->friend_status = 0;
-                                 }
-                           }//$result_fr2!==null
-                           else{
-                              $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+                                    }
+                              }//$result_fr2!==null
+                              else{
+                                 $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+                              }
+                           }//in_array($user_id_found,$arr
+                           else {
+                              $data->friend_status = -1;
                            }
-                        }//in_array($user_id_found,$arr
-                        else {
+
+                       }//pg_num_rows($result_fr)>0
+                       else{
                            $data->friend_status = -1;
-                        }
-                        
-                    }//pg_num_rows($result_fr)>0
-                    else{
-                        $data->friend_status = -1;
-                    }
-                    
-                 }//$result_fr!==null
-                 else {
-                     $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
-                 }
-                 array_push($list_search,$data);
+                       }
+
+                     }//$result_fr!==null
+                     else {
+                        $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+                     }
+                     array_push($list_search,$data);
+                  }//$user_id_found!=$user_id
+                 
               } //while
               $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
               $res->data = $list_search;
