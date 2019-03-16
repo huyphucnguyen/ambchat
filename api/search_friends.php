@@ -69,7 +69,8 @@ if(isset($_POST['keysearch'])&&isset($_POST['user_id'])){
                  else {
                      $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
                  }
-              }
+                 array_push($list_search,$data);
+              } //while
               $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
               $res->data = $arr;
              //Xử lý trạng thái bạn bè
