@@ -18,7 +18,6 @@ if(isset($_POST['user_id'])&&isset($_POST['friend_id'])){
        if(pg_num_rows($result)==0){
         //ex: "'1','444','0545'"
         $sql_i = "INSERT INTO \"public\".\"friends\" VALUES('$user_id','$friend_id')";
-        echo $sql_i;
         $dbconnection->execute($sql_i);
          $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
       } //pg_num_rows($result)>1
