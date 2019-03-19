@@ -1,5 +1,5 @@
 <?php 
-header('ContentType : application/json');
+header('Content-Type : application/json');
 $res = null;
 include "../lib/data.php";
 if(isset($_POST['user_id']))&&isset($_POST['user_request_id'])){
