@@ -2,7 +2,7 @@
 header('Content-Type : application/json');
 $res = null;
 include "../lib/data.php";
-if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
+// if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
 //   $user_id = $_POST['user_id'];
 //   $user_request_id = $_POST['user_request_id'];
 //   include "../lib/db.php";
@@ -60,9 +60,8 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
 //   else{
 //     $res = new Result(Constant::INVALID_DATABASE , 'Database is invalid.');  
 //   }
-}//isset($_POST['user_id']))&&isset($_POST['user_request_id'])
-else{
-    $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
-}
+//}//isset($_POST['user_id']))&&isset($_POST['user_request_id'])
+// else{
+//     $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
+// }
 echo (json_encode($res));
-?>
