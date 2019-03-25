@@ -1,6 +1,5 @@
 <?php 
 header('Content-Type : application/json');
-//$res = null;
 $result = null;
 die("aaaa4444");
 //include "../lib/data.php";
