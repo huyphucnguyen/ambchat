@@ -1,6 +1,6 @@
 <?php 
-die("aaaa");
 header('Content-Type : application/json');
+die("aaaa");
 $res = null;
 //include "../lib/data.php";
 // if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
