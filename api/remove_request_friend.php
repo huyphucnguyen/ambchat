@@ -1,7 +1,8 @@
 <?php 
 header('Content-Type : application/json');
+die("aaaa 3");
 include "../lib/data.php";
-die("aaaa4444");
+
 // if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
 //   $user_id = $_POST['user_id'];
 //   $user_request_id = $_POST['user_request_id'];
@@ -64,4 +65,5 @@ die("aaaa4444");
 // else{
 //     $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 // }
+$result = null;
 echo (json_encode($result));
