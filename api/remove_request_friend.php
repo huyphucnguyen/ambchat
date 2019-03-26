@@ -1,8 +1,7 @@
 <?php 
 error_reporting(E_ALL);
-header('Content-type : application/json');
-die('{"line":4}');
 include "../lib/data.php";
+die('{"line":4}');
 
 // if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
 //   $user_id = $_POST['user_id'];
