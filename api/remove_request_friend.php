@@ -1,4 +1,6 @@
 <?php 
+error_reporting(E_ALL);
+
 header('Content-Type : application/json');
 die("aaaa 3");
 include "../lib/data.php";
