@@ -1,8 +1,8 @@
 <?php 
-error_reporting(E_ALL);
-//include "../lib/data.php";
-//die('{"line":4}');
+//error_reporting(E_ALL);
+include "../lib/data.php";
 $result = null;
+$res = null;
 
 if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
   $user_id = $_POST['user_id'];
@@ -67,4 +67,4 @@ else{
     $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
 }
 
-echo (json_encode($result));
+echo (json_encode($res));
