@@ -58,9 +58,14 @@ class Constant
     const USER_EXIST = 3;
     const EMAIL_EXIST = 4;
     
+    const INVALID_FRIEND_REQUEST = -5;
+    const INVALID_FRIEND = -6;
+    
     const INVALID_DATABASE = -3;
     const INVALID_TOKEN = -4;
     
     const KEY_ENCRYPT = "dBchm5yOuJxzL7oKVQWf";
     const TIME_LIFE = 300; //5 phút
+    
+ 
 }
