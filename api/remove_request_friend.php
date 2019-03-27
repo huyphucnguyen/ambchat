@@ -50,13 +50,20 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
                     $sql = "DELETE FROM public.friends WHERE user_id = '$user_request_id'"; 
                     $dbconnection->execute($sql);
                   }  
-              }
-              $dbconnection->closeResult($result2); 
-              $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+                  $dbconnection->closeResult($result2); 
+                  $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+              }//in_array($user_id, $arr2)  
+              else{
+                  $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+               }  
             }//$result2!==null
             else{
               $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
             }  
+          }//in_array($user_request_id, $arr)
+          else{
+              $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+          }
       }//pg_num_rows($result)>0
       else{
         $res = new Result(Constant::INVALID_USER, 'User is not exist');
