@@ -54,7 +54,7 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
                   $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
               }//in_array($user_id, $arr2)  
               else{
-                  $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+                  $res = new Result(Constant::INVALID_FRIEND, 'Friend is not exist.');
                }  
             }//$result2!==null
             else{
@@ -62,7 +62,7 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
             }  
           }//in_array($user_request_id, $arr)
           else{
-              $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+              $res = new Result(Constant::INVALID_FRIEND_REQUEST, 'Friend request id is not exist.');
           }
       }//pg_num_rows($result)>0
       else{
