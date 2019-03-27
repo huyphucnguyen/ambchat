@@ -57,7 +57,6 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
             else{
               $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
             }  
-        }
       }//pg_num_rows($result)>0
       else{
         $res = new Result(Constant::INVALID_USER, 'User is not exist');
