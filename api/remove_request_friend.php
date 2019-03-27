@@ -1,6 +1,6 @@
 <?php 
 error_reporting(E_ALL);
-include "../lib/data.php";
+//include "../lib/data.php";
 die('{"line":4}');
 $result = null;
 
