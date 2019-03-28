@@ -42,7 +42,7 @@ if(isset($_POST['user_id'])&&isset($_POST['friend_id'])){
                             unset($arr2[array_search($user_id,$arr2)]);
                             $string2 = implode(",",$arr2);
                             //update
-                            $sql = "UPDATE public.friends SET friend_id_list = '$string2' WHERE user_id = '$user_id'";
+                            $sql = "UPDATE public.friends SET friend_id_list = '$string2' WHERE user_id = '$friend_id'";
                             $dbconnection->execute($sql);  
                           }//sizeof($arr2)>1
                           else{
