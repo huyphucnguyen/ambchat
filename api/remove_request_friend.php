@@ -15,7 +15,7 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
     $result = $dbconnection->select($sql);
     if($result!==null){
       if(pg_num_rows($result)>0){
-        $request_list = pg_fetch_object($result);
+        $request_list = (pg_fetch_object($result))->request_id;
         $arr = explode(",",$request_list);
         if (in_array($user_request_id, $arr)) 
         {
@@ -35,7 +35,7 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
             $sql = "SELECT friend_id_list FROM public.friends WHERE user_id = '$user_request_id'";
             $result2 = $dbconnection->select($sql);
             if($result2!==null){
-              $friend_id_list = pg_fetch_object($result);
+              $friend_id_list = (pg_fetch_object($result))->friend_id_list;
               $arr2 = explode(",",$friend_id_list);
               if (in_array($user_id, $arr2)) 
               {
