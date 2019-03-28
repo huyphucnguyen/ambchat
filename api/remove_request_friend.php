@@ -35,7 +35,7 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
             $sql = "SELECT friend_id_list FROM public.friends WHERE user_id = '$user_request_id'";
             $result2 = $dbconnection->select($sql);
             if($result2!==null){
-              $friend_id_list = (pg_fetch_object($result))->friend_id_list;
+              $friend_id_list = (pg_fetch_object($result2))->friend_id_list;
               $arr2 = explode(",",$friend_id_list);
               if (in_array($user_id, $arr2)) 
               {
