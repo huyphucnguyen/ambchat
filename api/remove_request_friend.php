@@ -40,7 +40,7 @@ if(isset($_POST['user_id'])&&isset($_POST['user_request_id'])){
               if (in_array($user_id, $arr2)) 
               {
                   if(sizeof($arr2)>1){
-                    unset($arr[array_search($user_id,$arr2)]);
+                    unset($arr2[array_search($user_id,$arr2)]);
                     $string2 = implode(",",$arr2);
                     echo 'string2='.$string2;
                     //update
