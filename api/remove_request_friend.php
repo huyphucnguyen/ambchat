@@ -1,4 +1,5 @@
 <?php 
+header('Content-Type: application/json');
 //error_reporting(E_ALL);
 include "../lib/data.php";
 $result = null;
