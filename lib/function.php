@@ -1,13 +1,4 @@
 <?php 
-function GUID()
-{
-    if (function_exists('com_create_guid') === true)
-    {
-        return trim(com_create_guid(), '{}');
-    }
-
-    return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
-}
 
 function encryptData($data,$key){
     $ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
@@ -83,4 +74,15 @@ function getStatusUser($dbconnection,$user_id){
     else{
         return 0;
     }
+}
+
+function isFriend($dbconnection, $user_id1, $user_id2){
+  $sql = "SELECT user_id FROM public.friends WHERE user_id = $user_id1 AND (friend_id_list LIKE '%,$user_id2,%' OR friend_id_list LIKE '%,$user_id2' friend_id_list LIKE '$user_id2,%' OR friend_id_list LIKE '$user_id2')";
+  $result = $dbconnection->select($sql);
+  if($result!==null){
+    if(pg_num_rows($result)>0){
+      return true;
+    }
+  }
+  return false;
 }
