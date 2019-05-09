@@ -86,3 +86,11 @@ function isFriend($dbconnection, $user_id1, $user_id2){
   }
   return false;
 }
+
+function convertPhoneNumber($phoneNumber){
+  //Remove all space in phone number string
+  $phoneNumber = str_replace(' ', '', $phoneNumber);
+  //get the last 9 numbers
+  $phoneNumber = substr($phoneNumber,0,-9);
+  return $phoneNumber;
+}
