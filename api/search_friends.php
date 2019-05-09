@@ -16,18 +16,18 @@ if(isset($_POST['keysearch'])&&isset($_POST['user_id'])){
       $sql = "SELECT full_name,picture,email,gender,user_id,phone FROM public.user WHERE full_name LIKE '%$str%'";
    }
       
-//    if($sql!=null){
-//       include "../lib/db.php";
-//       include "../lib/functions.php";
-//       $dbconnection = new postgresql("");
-//       if($dbconnection->isValid()){
-//         $result = $dbconnection->select($sql);
-//         if($result !==null){
-//           $list_search = array();
-//           if(pg_num_rows($result)>0){
-//               while($data = pg_fetch_object($result)){
-//                  $user_id_found = $data->user_id;
-//                  if($user_id_found!=$user_id){
+   if($sql!=null){
+      include "../lib/db.php";
+      include "../lib/functions.php";
+      $dbconnection = new postgresql("");
+      if($dbconnection->isValid()){
+        $result = $dbconnection->select($sql);
+        if($result !==null){
+          $list_search = array();
+          if(pg_num_rows($result)>0){
+              while($data = pg_fetch_object($result)){
+                 $user_id_found = $data->user_id;
+                 if($user_id_found!=$user_id){
 //                     $a_friend_b = isFriend($dbconnection,$user_id,$user_id_found);
 //                     $b_friend_a = isFriend($dbconnection,$user_id_found,$user_id);
 
@@ -41,29 +41,29 @@ if(isset($_POST['keysearch'])&&isset($_POST['user_id'])){
 //                       $data->friend_status = -1;
 //                     }
                      
-//                      array_push($list_search,$data);
+                     array_push($list_search,$data);
                      
-//                   }
-//               } 
-//               $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
-//               $res->data = $list_search;
-//              //Xử lý trạng thái bạn bè 
-//           } 
-//           else{
-//             $res = new Result(Constant::INVALID_USER, 'User is not exist');
-//           }
-//         }
-//         else{
-//            $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
-//         }
-//       } 
-//       else{
-//             $res = new Result(Constant::INVALID_DATABASE , 'Database is invalid.');  
-//         }
-//    } 
-//    else{
-//       $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
-//    }
+                  }
+              } 
+              $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+              $res->data = $list_search;
+             //Xử lý trạng thái bạn bè 
+          } 
+          else{
+            $res = new Result(Constant::INVALID_USER, 'User is not exist');
+          }
+        }
+        else{
+           $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+        }
+      } 
+      else{
+            $res = new Result(Constant::INVALID_DATABASE , 'Database is invalid.');  
+        }
+   } 
+   else{
+      $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+   }
 }
 else {
   $res = new Result(Constant::INVALID_PARAMETERS, 'Invalid parameters.');
