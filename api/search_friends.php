@@ -9,7 +9,7 @@ if(isset($_POST['keysearch'])&&isset($_POST['user_id'])){
    $sql=null;
    $matches = null;
     if(preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER)){
-      $phone = convertPhoneNumber($matches[0][0]);
+      //$phone = convertPhoneNumber($matches[0][0]);
       $sql = "SELECT full_name,picture,email,gender,user_id,phone FROM public.user WHERE phone LIKE '%$phone%'";
     } //preg_match_all($re, $str, $matches, PREG_PATTERN_ORDER , 0
    else{
