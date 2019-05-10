@@ -25,8 +25,7 @@ if(isset($_POST['user_id'])){
           //Kiem tra trong database có dòng user_id là $fr chứa $user_id không?
           $b_friend_a = isFriend($dbconnection,$fr_id,$user_id);
           if($b_friend_a==true){
-            $sql3 = "SELECT user_id,full_name,picture,email,gender,
-                user_id,phone FROM public.user WHERE user_id = '$fr_id'";
+            $sql3 = "SELECT user_id,full_name,picture,email,gender,user_id,phone FROM public.user WHERE user_id = '$fr_id'";
             $result3 = $dbconnection->select($sql3);
             if($result3!==null){
               $data_fr = pg_fetch_object($result3);
@@ -34,13 +33,17 @@ if(isset($_POST['user_id'])){
               $dbconnection->closeResult($result3);
             }
             else{
-              $res = new Result(Constant::GENERAL_ERROR,
-                    'There was an error while processing request. Please try again later.');
+              $res = new Result(Constant::GENERAL_ERROR,'There was an error while processing request. Please try again later.');
             }    
           }
         }
-        $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
-        $res->data = $true_friends_list;
+        if(sizeof(true_friends_list)==0){
+          $res = new Result(Constant::HAVE_NO_FRIEND, 'You have no friends.');
+        }
+        else{
+          $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+          $res->data = $true_friends_list;
+        }  
       }
       else{
         $res = new Result(Constant::INVALID_USER, 'User is not exist');
