@@ -123,3 +123,39 @@ function addFriendToList($dbconnection,$str_friends,$friend_id,$user_id){
       $dbconnection->execute($sql_update);
     }
 }
+
+function removeFriend($dbconection,$user_id,$friend_id){
+  $res = null;
+  $sql = "SELECT friend_id_list FROM public.friends WHERE user_id = '$friend_id'";
+  $result = $dbconnection->select($sql);
+  if($result!==null){
+      if(pg_num_rows($result)>0){
+          $friend_id_list = (pg_fetch_object($result))->friend_id_list;
+          $arr = explode(",",$friend_id_list);
+          if (in_array($user_id, $arr)){
+              if(sizeof($arr)>1){
+                unset($arr[array_search($user_id,$arr)]);
+                $string2 = implode(",",$arr);
+                //update
+                $sql = "UPDATE public.friends SET friend_id_list = '$string2' WHERE user_id = '$friend_id'";
+                $dbconnection->execute($sql);  
+              }
+              else{
+                $sql = "DELETE FROM public.friends WHERE user_id = '$friend_id'"; 
+                $dbconnection->execute($sql);
+              }
+            $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
+          }
+           else{
+              $res = new Result(Constant::INVALID_FRIEND, 'Friend is not exist.');
+           }
+      }
+      else{
+         $res = new Result(Constant::INVALID_FRIEND, 'Friend is not exist.');
+      }
+  }
+  else{
+      $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+  }
+  return $res;
+}
