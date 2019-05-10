@@ -13,12 +13,13 @@ if(isset($_POST['user_id'])&&isset($_POST['friend_id'])){
       $isRemoveA = removeFriend($dbconection,$user_id,$friend_id);
       if($isRemoveA == true){
         $isRemoveB = removeFriend($dbconection,$friend_id,$user_id);
-      }
-      if($isRemoveA == true && $isRemoveB == true){
-        $res = new Result(Constant::SUCCESS, 'Remove friend successfuly');
-      }
-      else{
-        $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+        
+        if($isRemoveA == true && $isRemoveB == true){
+          $res = new Result(Constant::SUCCESS, 'Remove friend successfuly');
+        }
+        else{
+          $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
+        }
       }
   }  else{
     $res = new Result(Constant::INVALID_DATABASE , 'Database is invalid.');  
