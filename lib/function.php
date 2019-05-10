@@ -91,6 +91,6 @@ function convertPhoneNumber($phoneNumber){
   //Remove all space in phone number string
   $phoneNumber = str_replace(' ', '', $phoneNumber);
   //get the last 9 numbers
-  $phoneNumber = substr($phoneNumber,0,-9);
+  $phoneNumber = substr($phoneNumber,-9);
   return $phoneNumber;
 }
