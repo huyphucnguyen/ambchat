@@ -7,6 +7,7 @@ if(isset($_POST['user_id'])){
   
   //Connect to database 
   include '../lib/db.php';
+  include '../lib/function.php';
   $dbconnection = new postgresql("");
   if($dbconnection->isValid()){
     $sql = "SELECT * FROM public.friends WHERE user_id = 129";
