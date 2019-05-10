@@ -7,6 +7,7 @@ if(isset($_POST['user_id'])&&isset($_POST['friend_id'])){
   $user_id = $_POST['user_id'];
   $friend_id = $_POST['friend_id'];
   include "../lib/db.php";
+  include "../lib/function.php";
   $dbconnection = new postgresql("");
   if($dbconnection->isValid()){
       $isRemoveA = removeFriend($dbconection,$user_id,$friend_id);
