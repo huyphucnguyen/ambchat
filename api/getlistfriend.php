@@ -37,7 +37,7 @@ if(isset($_POST['user_id'])){
             }    
           }
         }
-        if(sizeof(true_friends_list)==0){
+        if(sizeof($true_friends_list)==0){
           $res = new Result(Constant::HAVE_NO_FRIEND, 'You have no friends.');
         }
         else{
