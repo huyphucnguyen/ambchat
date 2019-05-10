@@ -7,6 +7,7 @@ if(isset($_POST['user_id'])&&isset($_POST['others_id'])){
   $user_id = $_POST['user_id'];
   $others_id = $_POST['others_id'];
   include "../lib/db.php";
+  include "../lib/function.php";
   $dbconnection = new postgresql("");
   if($dbconnection->isValid()){
     $sql = "SELECT friend_id_list FROM public.friends WHERE user_id = '$user_id'";
