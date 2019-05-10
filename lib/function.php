@@ -94,3 +94,15 @@ function convertPhoneNumber($phoneNumber){
   $phoneNumber = substr($phoneNumber,-9);
   return $phoneNumber;
 }
+
+function addFriendToList($dbconnection,$str_friends,$friend_id,$user_id){
+  $arr = explode(",",$str_friends);
+    if(!in_array($friend_id,$arr)){
+      if(strlen($str_friends)!=0){
+        $str_friends.=',';
+      } 
+      $str_friends.=$friend_id;
+      $sql_update = "UPDATE public.friends SET friend_id_list = '$str_friends' WHERE user_id = '$user_id'";
+      $dbconnection->execute($sql_update);
+    }
+}
