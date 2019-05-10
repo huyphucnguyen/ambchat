@@ -30,8 +30,8 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
             break;
         }
         if ($dbpassword !== null) {
-//           if (strcasecmp($dbpassword, $password) == 0) {
-//             include "../lib/function.php";
+          if (strcasecmp($dbpassword, $password) == 0) {
+            include "../lib/function.php";
 //             $guid = GUID();
 //             $res = new Result(Constant::SUCCESS, 'Operation complete successfully.');
 //             unset($user->pass_word);
@@ -49,9 +49,9 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["devi
 //             $token = encryptData($token_raw,KEY_ENCRYPT);
 //             //Thêm token
 //             $res->token = $token;                  
-//           } else {
-//               $res = new Result(Constant::INVALID_PASSWORD, 'Password is not matching.');
-//           }
+          } else {
+              $res = new Result(Constant::INVALID_PASSWORD, 'Password is not matching.');
+          }
         } else {
             $res = new Result(Constant::GENERAL_ERROR, 'There was an error while processing request. Please try again later.');
         }
