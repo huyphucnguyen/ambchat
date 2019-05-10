@@ -4,7 +4,7 @@ $res = null;
 include "../lib/data.php";
 include "../lib/function.php";
 if(isset($_POST['keysearch'])&&isset($_POST['user_id'])){
-   $re = '/^\s*(^0|^(\(?\+?[1-9]{2}\)?))([-. ]*[1-9]{2}[-. ]*)\d{3}[-. ]*\d{4}?/m';
+   $re = '/^\s*(^0|^(\(?\+?[1-9]{2}\)?))([-. ]*[0-9]{2}[-. ]*)\d{3}[-. ]*\d{4}?/m';
    $str = $_POST['keysearch'];
    $user_id = $_POST['user_id'];
    $sql=null;
