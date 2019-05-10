@@ -124,7 +124,7 @@ function addFriendToList($dbconnection,$str_friends,$friend_id,$user_id){
     }
 }
 
-function removeFriend($dbconection,$user_id,$friend_id){
+function removeFriend($dbconnection,$user_id,$friend_id){
   $sql = "SELECT friend_id_list FROM public.friends WHERE user_id = '$friend_id'";
   $result = $dbconnection->select($sql);
   if($result!==null){
