@@ -60,6 +60,7 @@ class Constant
     
     const INVALID_FRIEND_REQUEST = -5;
     const INVALID_FRIEND = -6;
+    const HAVE_NO_FRIEND = -7;
     
     const INVALID_DATABASE = -3;
     const INVALID_TOKEN = -4;
