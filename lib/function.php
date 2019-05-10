@@ -77,7 +77,7 @@ function getStatusUser($dbconnection,$user_id){
 }
 
 function isFriend($dbconnection, $user_id1, $user_id2){
-  $sql = "SELECT user_id FROM public.friends WHERE user_id = $user_id1 AND (friend_id_list LIKE '%,$user_id2,%' OR friend_id_list LIKE '%,$user_id2' friend_id_list LIKE '$user_id2,%' OR friend_id_list LIKE '$user_id2')";
+  $sql = "SELECT user_id FROM public.friends WHERE user_id = '$user_id1' AND (friend_id_list LIKE '%,$user_id2,%' OR friend_id_list LIKE '%,$user_id2' OR friend_id_list LIKE '$user_id2,%' OR friend_id_list LIKE '$user_id2')";
   $result = $dbconnection->select($sql);
   if($result!==null){
     if(pg_num_rows($result)>0){
